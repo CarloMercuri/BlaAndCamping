@@ -108,11 +108,13 @@
     <Content Include="About.aspx" />
     <Content Include="BlueDuck\About.aspx" />
     <Content Include="BlueDuck\Activities.aspx" />
+    <Content Include="BlueDuck\Booking.aspx" />
     <Content Include="BlueDuck\Contact.aspx" />
     <Content Include="BlueDuck\Index.aspx" />
     <Content Include="BlueDuck\Offers.aspx" />
     <Content Include="BlueDuck\Spots.aspx" />
     <Content Include="BlueDuck\test.aspx" />
+    <Content Include="CarloTest.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -210,6 +212,13 @@
     <Compile Include="BlueDuck\Activities.aspx.designer.cs">
       <DependentUpon>Activities.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BlueDuck\Booking.aspx.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\Booking.aspx.designer.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BlueDuck\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -244,6 +253,13 @@
     </Compile>
     <Compile Include="BlueDuck\test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CarloTest.aspx.cs">
+      <DependentUpon>CarloTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarloTest.aspx.designer.cs">
+      <DependentUpon>CarloTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

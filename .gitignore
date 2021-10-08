@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/BlaAndCamping/BlueDuck/Booking.aspx
+/BlaAndCamping/BlueDuck/Booking.aspx.cs
+/BlaAndCamping/BlueDuck/Booking.aspx.designer.cs
