@@ -121,6 +121,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\booking.css" />
     <Content Include="css\main.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -137,8 +138,10 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\activities_header.jpg" />
     <Content Include="Images\blue_duck.png" />
+    <Content Include="Images\cabin_small.png" />
     <Content Include="Images\camping1.jfif" />
     <Content Include="Images\campingvogn_final.png" />
+    <Content Include="Images\camping_img.png" />
     <Content Include="Images\camping_main_page.jpg" />
     <Content Include="Images\camping_main_page1.jpg" />
     <Content Include="Images\camping_main_page2.jpg" />
@@ -153,6 +156,7 @@
     <Content Include="Images\regular_cabin.png" />
     <Content Include="Images\tent_final.png" />
     <Content Include="Images\tilbud_final.png" />
+    <Content Include="Images\vogn_small.png" />
     <Content Include="Images\waterpark.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -6,13 +6,23 @@ using System.Web;
 
 namespace BlaAndCamping.LogicControl
 {
-    public static class DataProcessor
+    public class DataProcessor
     {
-        private static DatabaseInterface _dbInterface = new DatabaseInterface("local");
+        private DatabaseInterface _dbInterface;
 
-        public static CampingSpotTypeInformation GetSpotTypeInformation(int spotType)
+
+        public DataProcessor()
+        {
+            _dbInterface = new DatabaseInterface("esxi");
+        }
+        public CampingSpotTypeInformation GetSpotTypeInformation(int spotType)
         {
             return _dbInterface.GetCampingSpotTypeInformation(spotType);
+        }
+
+        public List<CampingSpotTypeInformation> GetSpotTypesInformation()
+        {
+            return _dbInterface.GetCampingSpotTypesInformation();
         }
 
     }

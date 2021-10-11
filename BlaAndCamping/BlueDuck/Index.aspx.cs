@@ -44,6 +44,7 @@ namespace BlaAndCamping.BlueDuck
 
 
         }
+
         protected void ActivitesButtonClick(object sender, EventArgs e)
         {
             Response.Redirect("Activities.aspx");

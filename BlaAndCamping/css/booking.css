@@ -1,0 +1,90 @@
+﻿body {
+}
+
+.booking-mid-section {
+}
+
+.booking-mid-section-half {
+    float:left;
+    width: 50%;
+    padding-left: 40px;
+}
+
+.booking-radio-buttons {
+    
+}
+
+/*.booking-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}*/
+
+.asp-checkbox {
+    height: 100%;
+
+}
+
+.asp-checkbox input {
+    position: absolute;
+    height: 80%;
+    width: 40px;
+    top: 3px;
+    left: 3px;
+}
+
+.asp-checkbox label {
+    padding-left: 10px;
+    text-align: center;
+    padding-top: 11px;
+}
+
+.booking-row-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    font-size: 22px;
+    width: 450px;
+    height: 57px;
+    border-style: ridge;
+    background-color: rgb(87 175 242);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*.booking-label-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}*/
+
+.booking-radio-checkbox{
+    height: 80%;
+    width: 40px;
+}
+
+/* Create a custom checkbox */
+.booking-radio-checkmark {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 80%;
+    width: 40px;
+    background-color: #eee;
+    border-style: ridge;
+}
+
+.booking-radio-img {
+    float: right;
+    max-width: 100px;
+    max-height: 100%;
+}

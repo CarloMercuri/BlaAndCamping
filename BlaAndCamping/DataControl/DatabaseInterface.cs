@@ -59,6 +59,48 @@ namespace BlaAndCamping.DataControl
             } // end of cmd
         }
 
+        /// <summary>
+        /// Get general information about the spot types
+        /// </summary>
+        /// <returns></returns>
+        public List<CampingSpotTypeInformation> GetCampingSpotTypesInformation()
+        {
+            List<CampingSpotTypeInformation> returnList = new List<CampingSpotTypeInformation>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetCampingSpotTypes", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return null;
+                    }
+
+
+
+                    while (rdr.Read())
+                    {
+                        CampingSpotTypeInformation spot = new CampingSpotTypeInformation();
+                        spot.SpotName = rdr["spot_name"].ToString();
+                        spot.SpotDescription = rdr["spot_description"].ToString();
+                        spot.SquareMeters = (int)rdr["square_meters"];
+                        spot.SpotType = (int)rdr["spot_type"];
+                        spot.MaxPeople = (int)rdr["max_people"];
+
+                        returnList.Add(spot);
+                    }
+
+                } // end of reader
+
+            } // end of cmd
+
+            return returnList;
+        }
+
         public CampingSpotTypeInformation GetCampingSpotTypeInformation(int spotType)
         {
             CampingSpotTypeInformation spot = new CampingSpotTypeInformation();
