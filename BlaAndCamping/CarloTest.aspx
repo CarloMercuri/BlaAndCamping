@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="/css/calendar.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,6 +18,8 @@
 
             <asp:Label ID="label_StartDate" runat="server" Text="Label"></asp:Label>
             <asp:Label ID="label_EndDate" runat="server" Text="Label"></asp:Label>
+
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
 
         </div>
         <div style="height: 166px">
