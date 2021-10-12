@@ -112,6 +112,8 @@
     <Content Include="BlueDuck\Contact.aspx" />
     <Content Include="BlueDuck\Index.aspx" />
     <Content Include="BlueDuck\Offers.aspx" />
+    <Content Include="BlueDuck\ReservationAccept.aspx" />
+    <Content Include="BlueDuck\ReservationConfirm.aspx" />
     <Content Include="BlueDuck\Spots.aspx" />
     <Content Include="BlueDuck\test.aspx" />
     <Content Include="CarloTest.aspx" />
@@ -244,6 +246,20 @@
     <Compile Include="BlueDuck\Offers.aspx.designer.cs">
       <DependentUpon>Offers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BlueDuck\ReservationAccept.aspx.cs">
+      <DependentUpon>ReservationAccept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\ReservationAccept.aspx.designer.cs">
+      <DependentUpon>ReservationAccept.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlueDuck\ReservationConfirm.aspx.cs">
+      <DependentUpon>ReservationConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\ReservationConfirm.aspx.designer.cs">
+      <DependentUpon>ReservationConfirm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BlueDuck\Spots.aspx.cs">
       <DependentUpon>Spots.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,6 +290,7 @@
     </Compile>
     <Compile Include="DataControl\Constants.cs" />
     <Compile Include="DataControl\DatabaseInterface.cs" />
+    <Compile Include="DataControl\SessionDataControl.cs" />
     <Compile Include="DataControl\SQLCommandParameter.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -287,6 +304,7 @@
     </Compile>
     <Compile Include="LogicControl\DataProcessor.cs" />
     <Compile Include="Models\CampingSpotTypeInformation.cs" />
+    <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\ReservationExtras.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -304,6 +322,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Booking.Master.cs">
+      <DependentUpon>Booking.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Booking.Master.designer.cs">
+      <DependentUpon>Booking.Master</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,6 +344,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Booking.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

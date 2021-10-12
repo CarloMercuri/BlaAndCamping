@@ -38,6 +38,30 @@ namespace BlaAndCamping.DataControl
         {
             List<int> returnList = new List<int>();
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetAvailableCampingSpotsTypes", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@startDate", SqlDbType.DateTime).Value = startDate;
+                cmd.Parameters.Add("@endDate", SqlDbType.DateTime).Value = startDate;
+                cmd.Parameters.Add("@spotType", SqlDbType.Int).Value = type;
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return null;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        returnList.Add((int)rdr["spot_number"]);
+                    }
+
+                } // end of reader
+
+            } // end of cmd
 
 
             return returnList;

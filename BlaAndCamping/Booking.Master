@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Booking.Master.cs" Inherits="BlaAndCamping.Site1" %>
+
+<!DOCTYPE html>
+
+<html lang="da">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camp Den Blå And</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/booking.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/png" href="/images/blue_duck.png" />
+
+
+</head>
+<body>
+    <form runat="server">
+
+  
+
+        <nav class="navbar navbar-expand-sm bg-navcolor navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/BlueDuck/Index.aspx">
+        <img src="/images/blue_duck.png" alt="Blue Duck Logo" style="width:40px;" /> 
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCustom">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCustom">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/About.aspx">Om Pladsen</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/Activities.aspx">Oplevelser</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/Booking.aspx">Bestil</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/SeasonPass.aspx">Sæsonpas</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/Offers.aspx">Tilbud</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/Contact.aspx">Kontakt</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+ 
+ 
+<asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+
+           <footer>
+               <br />
+               <br />
+               <br />
+               <hr />
+            <div class="row"> 
+                <div class="col-1"></div>
+                
+               
+                <div class="col-2">
+                    
+                        <h6>Du finder os her</h6>
+                    <p>Camp Den Blå And</p>
+                    <p>Jellingvej 57</p>
+                    <p>7182 Bredsten</p>
+                    
+                    
+                </div>
+                <div class="col-2">
+                    <h6>Kontaktinfo</h6>
+                    <p>Telefon: 5615 8888</p>
+                    <p>Email: <a href="kontakt@campdba.dk" target="_blank">kontakt@campdba.dk</a></p>
+                    <p>CVR: DK48594778 </p>
+                </div>
+              
+                <div class="col-4"></div>
+                <div class="col-2">
+                    
+                    <a href="https://www.instagram.com/faarupsocamping/?hl=da">
+                        <img src="/images/instagram.jpg" alt="Instagram Logo" style="width:40px;"/>
+                    </a>
+                    <br />
+                   <a href="https://www.facebook.com/farupsocamping/">
+                       <img src="/images/facebook.jpg" alt="Facebook Logo" style="width:40px;"/>
+                   </a>
+                </div>
+                <div class="col-1"></div>
+                </div>
+        </footer>
+
+
+    </form>
+</body>
+</html>

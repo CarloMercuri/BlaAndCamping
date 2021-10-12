@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Diagnostics;
 
 namespace BlaAndCamping.BlueDuck
 {
@@ -16,22 +17,30 @@ namespace BlaAndCamping.BlueDuck
 
         private List<CheckBox> checkBoxes;
 
+        private SessionDataControl _sessionControl;
+
         private DateTime SelectedStartDate
         {
-            get { return DateTime.Parse(Session["calendarStartDate"].ToString()); }
+            get { return DateTime.Parse(_sessionControl.GetSessionVariable("calendarStartDate").ToString()); }
             set { Session["calendarStartDate"] = value.ToString(); }
         }
 
         private DateTime SelectedEndDate
         {
-            get { return DateTime.Parse(Session["calendarEndDate"].ToString()); }
+            get { return DateTime.Parse(_sessionControl.GetSessionVariable("calendarEndDate").ToString()); }
             set { Session["calendarEndDate"] = value.ToString(); }
         }
 
         private int SelectedType
         {
-            get { return (int)Session["selectedType"]; }
+            get { return (int)_sessionControl.GetSessionVariable("selectedType"); }
             set { Session["selectedType"] = value; }
+        }
+
+        private int SelectedSpotNumber
+        {
+            get { return (int)_sessionControl.GetSessionVariable("selectedSpotNumber"); }
+            set { _sessionControl.SetSessionVariable("selectedSpotNumber", value); }
         }
 
         // 0 = start date, 1 = end date
@@ -44,17 +53,33 @@ namespace BlaAndCamping.BlueDuck
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            _sessionControl = new SessionDataControl();
+            _processor = new DataProcessor();
+
             if (!IsPostBack)
             {
                 Session["selectedType"] = -1;
                 Session["calendarSelectState"] = 0;
                 Session["calendarStartDate"] = DateTime.MinValue.ToString();
                 Session["calendarEndDate"] = DateTime.MinValue.ToString();
+
+                _sessionControl.CreateReservation();
+
+
             }
 
+          
+
+            InitializeCheckboxes();
+            InitializeCalendar();
+            CheckValidSelection();
+        }
+
+        private void InitializeCheckboxes()
+        {
             checkBoxes = new List<CheckBox>();
 
-            _processor = new DataProcessor();
+
 
             List<CampingSpotTypeInformation> spots = _processor.GetSpotTypesInformation();
 
@@ -79,9 +104,11 @@ namespace BlaAndCamping.BlueDuck
                         checkBoxes[i].Checked = false;
                     }
 
+                    SelectedType = spot.SpotType;
+
                     checkBox.Checked = true;
 
-                    TypesCheckChanged();
+                    CheckValidSelection();
                 };
 
                 checkBoxes.Add(checkBox);
@@ -97,25 +124,6 @@ namespace BlaAndCamping.BlueDuck
                 bookingRadioSection.Controls.Add(customDiv);
 
             }
-
-           
-
-
-
-            DataProcessor p = new DataProcessor();
-
-            calendar_Main.Width = Unit.Pixel(400);
-            calendar_Main.Height = Unit.Pixel(400);
-            calendar_Main.Style.Add(HtmlTextWriterStyle.MarginLeft, "250px");
-            //FirstNameTextBox.Width = Unit.Pixel(300);
-            //LastNameTextBox.Width = Unit.Pixel(300);
-            //AddressTextBox.Width = Unit.Pixel(300);
-            //ZipCodeTextBox.Width = Unit.Pixel(300);
-            //CityTextBox.Width = Unit.Pixel(300);
-            //TelephoneTextBox.Width = Unit.Pixel(300);
-            //EmailTextBox.Width = Unit.Pixel(300);
-
-            InitializeCalendar();
         }
 
         private void CheckBoxesChanged(object sender, EventArgs e)
@@ -126,11 +134,6 @@ namespace BlaAndCamping.BlueDuck
             }
 
             
-        }
-
-        private void TypesCheckChanged()
-        {
-
         }
 
         private void ApplyStateChange(int state)
@@ -164,7 +167,7 @@ namespace BlaAndCamping.BlueDuck
             calendar_Main.TitleStyle.BackColor = Color.FromArgb(255, 4, 94, 188);
             calendar_Main.TitleStyle.ForeColor = Color.White;
             //calendar_Main.NextMonthText
-
+            calendar_Main.Style.Add(HtmlTextWriterStyle.MarginLeft, "250px");
             calendar_Main.TitleStyle.Font.Bold = true;
             calendar_Main.TitleStyle.Font.Size = 14;
             calendar_Main.TitleStyle.Font.Name = "Arial";
@@ -197,11 +200,40 @@ namespace BlaAndCamping.BlueDuck
             {
                 ShowAvailableSpots();
             }
+
         }
 
         private void ShowAvailableSpots()
         {
-            _processor.GetAvailableSpotsDateType(SelectedStartDate, SelectedEndDate, SelectedType);
+            _sessionControl.SetReservationStartDate(SelectedStartDate);
+            _sessionControl.SetReservationEndDate(SelectedEndDate);
+            List<int> aviableSpotNumbers = _processor.GetAvailableSpotsDateType(SelectedStartDate, SelectedEndDate, SelectedType);
+            AddSpotSelectionButtons(aviableSpotNumbers);
+            
+        }
+
+        private void AddSpotSelectionButtons(List<int> aviableSpotNumbers)
+        {
+            foreach (int number in aviableSpotNumbers)
+            {
+                Button btn = new Button();
+                btn.Text = number.ToString();
+                btn.CssClass = "booking-spot-button";
+                ButtonsMidSection.Controls.Add(btn);
+
+                btn.Click += (sender, args) =>
+                {
+                    SelectedSpotNumber = number;
+
+                    _processor.UpdateReservationStartDate(SelectedStartDate);
+                    _processor.UpdateReservationEndDate(SelectedEndDate);
+                    _processor.UpdateReservationSpotNumber(SelectedSpotNumber);
+
+                    Response.Redirect("ReservationConfirm.aspx");
+                };
+            }
+
+
         }
 
         private void CalendarDayRenderer(object sender, DayRenderEventArgs e)
@@ -225,11 +257,6 @@ namespace BlaAndCamping.BlueDuck
 
             e.Cell.Font.Name = "Verdana";
 
-            //e.Cell.BorderStyle = BorderStyle.Ridge;
-            //e.Cell.BorderWidth = Unit.Pixel(1);
-            //e.Cell.BorderColor = Color.FromArgb(80, 200, 200, 200);
-
-
 
             if (SelectedEndDate > SelectedStartDate)
             {
@@ -243,12 +270,6 @@ namespace BlaAndCamping.BlueDuck
                 }
             }
 
-            if (e.Day.Date == calendar_Main.SelectedDate)
-            {
-                //e.Cell.ForeColor = Color.White;
-                e.Cell.BackColor = Color.FromArgb(255, 100, 100, 255);
-                e.Cell.ForeColor = Color.FromArgb(255, 200, 200, 200);
-            }
         }
     }
 }
