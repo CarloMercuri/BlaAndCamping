@@ -201,7 +201,7 @@ namespace BlaAndCamping.BlueDuck
 
         private void ShowAvailableSpots()
         {
-
+            _processor.GetAvailableSpotsDateType(SelectedStartDate, SelectedEndDate, SelectedType);
         }
 
         private void CalendarDayRenderer(object sender, DayRenderEventArgs e)

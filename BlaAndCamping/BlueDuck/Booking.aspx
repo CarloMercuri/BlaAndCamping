@@ -18,7 +18,7 @@
     <br />
 
     <!--BOOKING CONTENT-->
-    <div class="bookin-mid-section">
+    <div class="booking-mid-section">
         <div class="booking-mid-section-half">
             <asp:Calendar ID="calendar_Main" runat="server"></asp:Calendar>
         </div>
@@ -28,14 +28,20 @@
         
     </div>
 
-    <!--  SELECTION  -->
+    <!--  SELECTION BUTTON  -->
+
+    <div>
+
+    </div>
+
+    <!-- SELECTION -->
 
     <div class="booking-spot-selection" style="margin-top: 40px;">
-        <div class="booking-mid-section-half">
+        <div class="booking-selection-mid-section-half">
             <img src="../Images/camping_img.png" />
         </div>
 
-        <div class="booking-mid-section-half">
+        <div class="booking-selection-mid-section-half" ID="ButtonsMidSection" runat="server">
 
         </div>
 

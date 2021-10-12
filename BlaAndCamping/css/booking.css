@@ -2,6 +2,7 @@
 }
 
 .booking-mid-section {
+    height: 400px;
 }
 
 .booking-mid-section-half {
@@ -10,8 +11,17 @@
     padding-left: 40px;
 }
 
+.booking-selection-mid-section-half {
+    float: left;
+    width: 50%;
+    padding-left: 40px;
+}
+
+.booking-spot-selection {
+    height: 1000px;
+}
+
 .booking-radio-buttons {
-    
 }
 
 /*.booking-checkmark {

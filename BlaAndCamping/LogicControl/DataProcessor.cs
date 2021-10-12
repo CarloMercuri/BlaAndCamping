@@ -25,6 +25,11 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetCampingSpotTypesInformation();
         }
 
+        public List<int> GetAvailableSpotsDateType(DateTime startDate, DateTime endDate, int type)
+        {
+            return _dbInterface.GetAvailableSpotsDateType(startDate, endDate, type);
+        }
+
     }
 
 

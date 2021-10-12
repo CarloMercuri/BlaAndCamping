@@ -34,31 +34,16 @@ namespace BlaAndCamping.DataControl
             }
         }
 
-        private void DeveloperCtrlC()
+        public List<int> GetAvailableSpotsDateType(DateTime startDate, DateTime endDate, int type)
         {
-            using (SqlConnection con = new SqlConnection(connectionString))
-            using (var cmd = new SqlCommand("GetAvailableCampingSpotsTypesFull", con))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
+            List<int> returnList = new List<int>();
 
-                cmd.Parameters.Add("@paramName", SqlDbType.VarChar).Value = "paramValue";
-                con.Open();
 
-                using (SqlDataReader rdr = cmd.ExecuteReader())
-                {
-                    if (!rdr.HasRows)
-                    {
-                    }
 
-                    while (rdr.Read())
-                    {
-                        string value1 = rdr["value_name"].ToString();
-                    }
-                } // end of reader
-
-            } // end of cmd
+            return returnList;
         }
 
+        
         /// <summary>
         /// Get general information about the spot types
         /// </summary>
