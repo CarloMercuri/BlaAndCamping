@@ -70,7 +70,7 @@ namespace BlaAndCamping.BlueDuck
 
           
 
-            InitializeCheckboxes();
+            //InitializeCheckboxes();
             InitializeCalendar();
             CheckValidSelection();
         }
@@ -121,7 +121,7 @@ namespace BlaAndCamping.BlueDuck
 
                 customDiv.Controls.Add(img);
 
-                bookingRadioSection.Controls.Add(customDiv);
+                //bookingRadioSection.Controls.Add(customDiv);
 
             }
         }
@@ -162,12 +162,13 @@ namespace BlaAndCamping.BlueDuck
             calendar_Main.DayRender += CalendarDayRenderer;
             calendar_Main.SelectionChanged += CalendarSelectionChanged;
             calendar_Main.Height = Unit.Pixel(400);
-            calendar_Main.Width = Unit.Pixel(500);
+            calendar_Main.Width = Unit.Pixel(800);
             calendar_Main.SelectionMode = CalendarSelectionMode.Day;
             calendar_Main.TitleStyle.BackColor = Color.FromArgb(255, 4, 94, 188);
             calendar_Main.TitleStyle.ForeColor = Color.White;
             //calendar_Main.NextMonthText
-            calendar_Main.Style.Add(HtmlTextWriterStyle.MarginLeft, "250px");
+            //calendar_Main.Style.Add(HtmlTextWriterStyle.MarginLeft, "250px");
+            calendar_Main.Style.Add(HtmlTextWriterStyle.Margin, "auto");
             calendar_Main.TitleStyle.Font.Bold = true;
             calendar_Main.TitleStyle.Font.Size = 14;
             calendar_Main.TitleStyle.Font.Name = "Arial";
@@ -188,7 +189,30 @@ namespace BlaAndCamping.BlueDuck
                 ChangeCalendarSelectionState(0);
             }
 
-            CheckValidSelection();
+            //CheckValidSelection();
+            CheckValidCalendarSelection();
+        }
+
+        private void CheckValidCalendarSelection()
+        {
+            if (SelectedStartDate > DateTime.MinValue &&
+                SelectedEndDate > DateTime.MinValue &&
+                SelectedEndDate > SelectedStartDate)
+            {
+                ShowSpotTypeSelection();
+            }
+        }
+
+        private void ShowSpotTypeSelection()
+        {
+            List<CampingSpotTypeInformation> list = new List<CampingSpotTypeInformation>();
+            //List<int> available = _processor.GetAvailableSpotsDate(SelectedStartDate, SelectedEndDate);
+             list.Add(_processor.GetSpotTypeInformation(0));
+             list.Add(_processor.GetSpotTypeInformation(1));
+             list.Add(_processor.GetSpotTypeInformation(2));
+             list.Add(_processor.GetSpotTypeInformation(3));
+             list.Add(_processor.GetSpotTypeInformation(4));
+             list.Add(_processor.GetSpotTypeInformation(5));
         }
 
         private void CheckValidSelection()
@@ -219,7 +243,7 @@ namespace BlaAndCamping.BlueDuck
                 Button btn = new Button();
                 btn.Text = number.ToString();
                 btn.CssClass = "booking-spot-button";
-                ButtonsMidSection.Controls.Add(btn);
+                //ButtonsMidSection.Controls.Add(btn);
 
                 btn.Click += (sender, args) =>
                 {

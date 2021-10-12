@@ -35,6 +35,11 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetAvailableSpotsDateType(startDate, endDate, type);
         }
 
+        public List<int> GetAvailableSpotsDate(DateTime startDate, DateTime endDate)
+        {
+            return _dbInterface.GetAvailableSpotsDate(startDate, endDate);
+        }
+
         public void UpdateReservationStartDate(DateTime date)
         {
             _sessionControl.SetReservationStartDate(date);
