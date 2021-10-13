@@ -35,13 +35,17 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetAvailableSpotsDateType(startDate, endDate, type);
         }
 
-        public void UpdateReservationStartDate(DateTime date)
+        public void SetReservationStartDate(DateTime date)
         {
+            // Automatically sets the arrival time to 13:00
+            date = date.AddHours(13);
             _sessionControl.SetReservationStartDate(date);
         }
 
-        public void UpdateReservationEndDate(DateTime date)
+        public void SetReservationEndDate(DateTime date)
         {
+            // Automatically sets the leave time to 10:00
+            date = date.AddHours(10);
             _sessionControl.SetReservationEndDate(date);
         }
 

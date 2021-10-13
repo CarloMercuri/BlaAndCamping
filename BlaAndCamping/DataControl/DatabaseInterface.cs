@@ -34,6 +34,13 @@ namespace BlaAndCamping.DataControl
             }
         }
 
+        /// <summary>
+        /// Returns a list of id's of the spots of a specifit type, available in a specified time frame
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public List<int> GetAvailableSpotsDateType(DateTime startDate, DateTime endDate, int type)
         {
             List<int> returnList = new List<int>();
@@ -69,7 +76,7 @@ namespace BlaAndCamping.DataControl
 
         
         /// <summary>
-        /// Get general information about the spot types
+        /// Get general information about all the spot types
         /// </summary>
         /// <returns></returns>
         public List<CampingSpotTypeInformation> GetCampingSpotTypesInformation()
@@ -110,6 +117,11 @@ namespace BlaAndCamping.DataControl
             return returnList;
         }
 
+        /// <summary>
+        /// Get information about a specific spot type
+        /// </summary>
+        /// <param name="spotType"></param>
+        /// <returns></returns>
         public CampingSpotTypeInformation GetCampingSpotTypeInformation(int spotType)
         {
             CampingSpotTypeInformation spot = new CampingSpotTypeInformation();
@@ -148,6 +160,12 @@ namespace BlaAndCamping.DataControl
             return spot;
         }
 
+        /// <summary>
+        /// Returns a list of information about all the spot types available in a specified time frame
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         public List<CampingSpotTypeInformation> GetAvaibleSpotTypesInDates(DateTime startDate, DateTime endDate)
         {
             List<SQLCommandParameter> cmdParams = new List<SQLCommandParameter>();
@@ -193,29 +211,6 @@ namespace BlaAndCamping.DataControl
             return returnList;
         }
 
-        private SqlDataReader SendStoredProcedure(string procedureName, List<SQLCommandParameter> parameters)
-        {
-            SqlConnection con = new SqlConnection(connectionString);
-
-            con.Open();
-
-            var cmd = new SqlCommand(procedureName, con);
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            foreach (SQLCommandParameter param in parameters)
-            {
-                cmd.Parameters.Add(param.ParameterName, SqlDbType.VarChar).Value = param.ParameterValue;
-            }
-
-            SqlDataReader rdr = cmd.ExecuteReader();
-
-            con.Close();
-
-            return rdr;
-
-          
-        }
     }
 
 }

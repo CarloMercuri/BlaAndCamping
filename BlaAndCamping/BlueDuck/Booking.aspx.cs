@@ -21,26 +21,26 @@ namespace BlaAndCamping.BlueDuck
 
         private DateTime SelectedStartDate
         {
-            get { return DateTime.Parse(_sessionControl.GetSessionVariable("calendarStartDate").ToString()); }
-            set { Session["calendarStartDate"] = value.ToString(); }
+            get { return _sessionControl.GetReservationStartDate(); }
+            set { _sessionControl.SetReservationStartDate(value); }
         }
 
         private DateTime SelectedEndDate
         {
-            get { return DateTime.Parse(_sessionControl.GetSessionVariable("calendarEndDate").ToString()); }
-            set { Session["calendarEndDate"] = value.ToString(); }
+            get { return _sessionControl.GetReservationEndDate(); }
+            set { _sessionControl.SetReservationEndDate(value); }
         }
 
         private int SelectedType
         {
-            get { return (int)_sessionControl.GetSessionVariable("selectedType"); }
-            set { Session["selectedType"] = value; }
+            get { return _sessionControl.GetReservationSelectedType(); }
+            set { _sessionControl.SetReservationSelectedType(value); }
         }
 
         private int SelectedSpotNumber
         {
-            get { return (int)_sessionControl.GetSessionVariable("selectedSpotNumber"); }
-            set { _sessionControl.SetSessionVariable("selectedSpotNumber", value); }
+            get { return _sessionControl.GetReservationSpotNumber(); }
+            set { _sessionControl.SetReservationSpotNumber(value); }
         }
 
         // 0 = start date, 1 = end date
@@ -58,17 +58,10 @@ namespace BlaAndCamping.BlueDuck
 
             if (!IsPostBack)
             {
-                Session["selectedType"] = -1;
-                Session["calendarSelectState"] = 0;
-                Session["calendarStartDate"] = DateTime.MinValue.ToString();
-                Session["calendarEndDate"] = DateTime.MinValue.ToString();
-
-                _sessionControl.CreateReservation();
-
-
+                _sessionControl.SetSessionVariable("calendarSelectState", 0);
+                _sessionControl.ResetReservation();
             }
-
-          
+                     
 
             InitializeCheckboxes();
             InitializeCalendar();
@@ -205,8 +198,8 @@ namespace BlaAndCamping.BlueDuck
 
         private void ShowAvailableSpots()
         {
-            _sessionControl.SetReservationStartDate(SelectedStartDate);
-            _sessionControl.SetReservationEndDate(SelectedEndDate);
+            _processor.SetReservationStartDate(SelectedStartDate);
+            _processor.SetReservationEndDate(SelectedEndDate);
             List<int> aviableSpotNumbers = _processor.GetAvailableSpotsDateType(SelectedStartDate, SelectedEndDate, SelectedType);
             AddSpotSelectionButtons(aviableSpotNumbers);
             
@@ -225,8 +218,8 @@ namespace BlaAndCamping.BlueDuck
                 {
                     SelectedSpotNumber = number;
 
-                    _processor.UpdateReservationStartDate(SelectedStartDate);
-                    _processor.UpdateReservationEndDate(SelectedEndDate);
+                    _processor.SetReservationStartDate(SelectedStartDate);
+                    _processor.SetReservationEndDate(SelectedEndDate);
                     _processor.UpdateReservationSpotNumber(SelectedSpotNumber);
 
                     Response.Redirect("ReservationConfirm.aspx");
