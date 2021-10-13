@@ -57,6 +57,21 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetAvaibleSpotTypesInDates(startDate, endDate);
         }
 
+        public void SetCustomerInformation(CustomerInformation customer)
+        {
+            _sessionControl.SetCustomerInformation(customer);
+        }
+
+        public int GetReservationSelectedType()
+        {
+            return _sessionControl.GetReservationSelectedType();
+        }
+
+        public void SetReservationSelectedType(int i)
+        {
+            _sessionControl.SetReservationSelectedType(i);
+        }
+
         /// <summary>
         /// Sets the reservation start date in the session
         /// </summary>
@@ -79,13 +94,38 @@ namespace BlaAndCamping.LogicControl
             _sessionControl.SetReservationEndDate(date);
         }
 
+        public DateTime GetReservationStartDate()
+        {
+            return _sessionControl.GetReservationStartDate();
+        }
+
+        public DateTime GetReservationEndDate()
+        {
+            return _sessionControl.GetReservationEndDate();
+        }
+
+        public void InitializeReservation()
+        {
+            _sessionControl.InitializeReservation();
+        }
+
         /// <summary>
         /// Sets the reservation spot number in the session
         /// </summary>
         /// <param name="number"></param>
-        public void UpdateReservationSpotNumber(int number)
+        public void SetReservationSpotNumber(int number)
         {
             _sessionControl.SetReservationSpotNumber(number);
+        }
+
+        public int GetReservationSpotNumber()
+        {
+            return _sessionControl.GetReservationSpotNumber();
+        }
+
+        public void SetSessionVariable<T>(string name, T value)
+        {
+            _sessionControl.SetSessionVariable(name, value);
         }
 
 

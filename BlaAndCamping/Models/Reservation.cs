@@ -73,7 +73,7 @@ namespace BlaAndCamping.Models
             set { extras = value; }
         }
 
-        private int adults;
+        private int adults; 
 
         /// <summary>
         /// The number of Adults included in the reservation
@@ -110,7 +110,5 @@ namespace BlaAndCamping.Models
         {
 
         }
-
-
     }
 }

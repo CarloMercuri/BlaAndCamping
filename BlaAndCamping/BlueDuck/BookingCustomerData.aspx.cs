@@ -12,7 +12,6 @@ namespace BlaAndCamping.BlueDuck
 {
     public partial class ReservationConfirm : System.Web.UI.Page
     {
-        SessionDataControl _sessionControl;
         DataProcessor _processor;
         private bool isEmailValid;
                 
@@ -20,7 +19,6 @@ namespace BlaAndCamping.BlueDuck
         {
             _processor = new DataProcessor();
 
-            _sessionControl = new SessionDataControl();
 
             //Reservation reservation = _sessionControl.GetReservation();
             Reservation reservation = new Reservation();
@@ -49,10 +47,9 @@ namespace BlaAndCamping.BlueDuck
                                                                        tBox_Email.Text,
                                                                        tBox_ZipCode.Text,
                                                                        tBox_City.Text);
+                _processor.SetCustomerInformation(customer);
 
-                _sessionControl.SetCustomerInformation(customer);
-
-                Response.Redirect("ReservationAccept.aspx?");
+                Response.Redirect("BookingExtras.aspx?");
             }
         }
 

@@ -19,9 +19,9 @@
 .booking-spot-button {
     width: 60px;
     height: 60px;
-    background-color: transparent;
+    background-color: aliceblue;
     border-width: 3px;
-    border: 3px solid gray;
+    border: 3px solid lightblue;
 }
 
 .map {
@@ -211,4 +211,25 @@
 .selection-row-button {
    height: 50px;
    width: 50px;
+}
+
+.slot-selection-buttons-container {
+    width: 80%;
+    height: 700px;
+}
+
+.booking-members-container {
+    margin-top: 400px;
+    width: 320px;
+}
+
+.booking-members-tbox {
+    width: 20px;
+    margin-top: 6px;
+}
+
+.booking-members-button {
+    margin-top:6px; 
+    width: 30px;
+    height: 30px;
 }

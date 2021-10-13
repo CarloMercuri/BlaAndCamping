@@ -109,11 +109,13 @@
     <Content Include="BlueDuck\About.aspx" />
     <Content Include="BlueDuck\Activities.aspx" />
     <Content Include="BlueDuck\Booking.aspx" />
+    <Content Include="BlueDuck\BookingExtras.aspx" />
+    <Content Include="BlueDuck\BookingSelectSlot.aspx" />
     <Content Include="BlueDuck\Contact.aspx" />
     <Content Include="BlueDuck\Index.aspx" />
     <Content Include="BlueDuck\Offers.aspx" />
     <Content Include="BlueDuck\ReservationAccept.aspx" />
-    <Content Include="BlueDuck\ReservationConfirm.aspx" />
+    <Content Include="BlueDuck\BookingCustomerData.aspx" />
     <Content Include="BlueDuck\Spots.aspx" />
     <Content Include="BlueDuck\test.aspx" />
     <Content Include="CarloTest.aspx" />
@@ -225,6 +227,20 @@
     <Compile Include="BlueDuck\Booking.aspx.designer.cs">
       <DependentUpon>Booking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BlueDuck\BookingExtras.aspx.cs">
+      <DependentUpon>BookingExtras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\BookingExtras.aspx.designer.cs">
+      <DependentUpon>BookingExtras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlueDuck\BookingSelectSlot.aspx.cs">
+      <DependentUpon>BookingSelectSlot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\BookingSelectSlot.aspx.designer.cs">
+      <DependentUpon>BookingSelectSlot.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BlueDuck\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,12 +269,12 @@
     <Compile Include="BlueDuck\ReservationAccept.aspx.designer.cs">
       <DependentUpon>ReservationAccept.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BlueDuck\ReservationConfirm.aspx.cs">
-      <DependentUpon>ReservationConfirm.aspx</DependentUpon>
+    <Compile Include="BlueDuck\BookingCustomerData.aspx.cs">
+      <DependentUpon>BookingCustomerData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BlueDuck\ReservationConfirm.aspx.designer.cs">
-      <DependentUpon>ReservationConfirm.aspx</DependentUpon>
+    <Compile Include="BlueDuck\BookingCustomerData.aspx.designer.cs">
+      <DependentUpon>BookingCustomerData.aspx</DependentUpon>
     </Compile>
     <Compile Include="BlueDuck\Spots.aspx.cs">
       <DependentUpon>Spots.aspx</DependentUpon>

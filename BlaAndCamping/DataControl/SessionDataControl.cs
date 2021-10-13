@@ -36,7 +36,7 @@ namespace BlaAndCamping
         /// <summary>
         /// Resets any stored value and makes it ready for a new reservation
         /// </summary>
-        public void ResetReservation()
+        public void InitializeReservation()
         {
             SetReservationMembers(0, 0, 0);
             SetReservationStartDate(DateTime.MinValue);

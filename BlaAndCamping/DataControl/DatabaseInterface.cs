@@ -184,6 +184,7 @@ namespace BlaAndCamping.DataControl
                 {
                     if (!rdr.HasRows)
                     {
+
                     }
 
                     while (rdr.Read())

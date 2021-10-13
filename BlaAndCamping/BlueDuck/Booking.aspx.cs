@@ -17,32 +17,30 @@ namespace BlaAndCamping.BlueDuck
 
         private List<CheckBox> checkBoxes;
 
-        private SessionDataControl _sessionControl;
-
         private Dictionary<string, int> EventIDToType;
 
         private DateTime SelectedStartDate
         {
-            get { return _sessionControl.GetReservationStartDate(); }
-            set { _sessionControl.SetReservationStartDate(value); }
+            get { return _processor.GetReservationStartDate(); }
+            set { _processor.SetReservationStartDate(value); }
         }
 
         private DateTime SelectedEndDate
         {
-            get { return _sessionControl.GetReservationEndDate(); }
-            set { _sessionControl.SetReservationEndDate(value); }
+            get { return _processor.GetReservationEndDate(); }
+            set { _processor.SetReservationEndDate(value); }
         }
 
         private int SelectedType
         {
-            get { return _sessionControl.GetReservationSelectedType(); }
-            set { _sessionControl.SetReservationSelectedType(value); }
+            get { return _processor.GetReservationSelectedType(); }
+            set { _processor.SetReservationSelectedType(value); }
         }
 
         private int SelectedSpotNumber
         {
-            get { return _sessionControl.GetReservationSpotNumber(); }
-            set { _sessionControl.SetReservationSpotNumber(value); }
+            get { return _processor.GetReservationSpotNumber(); }
+            set { _processor.SetReservationSpotNumber(value); }
         }
 
         private int stage = 0;
@@ -58,7 +56,6 @@ namespace BlaAndCamping.BlueDuck
         protected void Page_Load(object sender, EventArgs e)
         {
             stage = 0;
-            _sessionControl = new SessionDataControl();
             _processor = new DataProcessor();
 
 
@@ -66,8 +63,8 @@ namespace BlaAndCamping.BlueDuck
             if (!IsPostBack)
             {
                 EventIDToType = new Dictionary<string, int>();
-                _sessionControl.SetSessionVariable("calendarSelectState", 0);
-                _sessionControl.ResetReservation();
+                _processor.SetSessionVariable("calendarSelectState", 0);
+                _processor.InitializeReservation();
             }
 
             if (stage == 1)
@@ -377,7 +374,7 @@ namespace BlaAndCamping.BlueDuck
 
                     _processor.SetReservationStartDate(SelectedStartDate);
                     _processor.SetReservationEndDate(SelectedEndDate);
-                    _processor.UpdateReservationSpotNumber(SelectedSpotNumber);
+                    _processor.SetReservationSpotNumber(SelectedSpotNumber);
 
                     Response.Redirect("ReservationConfirm.aspx");
                 };
