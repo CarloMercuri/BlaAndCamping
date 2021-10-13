@@ -85,6 +85,7 @@ namespace BlaAndCamping.Models
         }
 
         private int children;
+
         /// <summary>
         /// The number of Children included in the reservation
         /// </summary>
@@ -105,7 +106,10 @@ namespace BlaAndCamping.Models
             set { dogs = value; }
         }
 
+        public Reservation()
+        {
 
+        }
 
 
     }

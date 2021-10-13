@@ -15,6 +15,24 @@ namespace BlaAndCamping.BlueDuck
     {
 
         /// <summary>
+        /// calendarScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager calendarScriptManager;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// calendar_Main control.
         /// </summary>
         /// <remarks>
@@ -24,21 +42,12 @@ namespace BlaAndCamping.BlueDuck
         protected global::System.Web.UI.WebControls.Calendar calendar_Main;
 
         /// <summary>
-        /// bookingRadioSection control.
+        /// selectionMainDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingRadioSection;
-
-        /// <summary>
-        /// ButtonsMidSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ButtonsMidSection;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl selectionMainDiv;
     }
 }

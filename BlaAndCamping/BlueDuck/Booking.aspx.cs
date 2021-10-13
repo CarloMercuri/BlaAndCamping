@@ -19,6 +19,8 @@ namespace BlaAndCamping.BlueDuck
 
         private SessionDataControl _sessionControl;
 
+        private Dictionary<string, int> EventIDToType;
+
         private DateTime SelectedStartDate
         {
             get { return _sessionControl.GetReservationStartDate(); }
@@ -43,6 +45,8 @@ namespace BlaAndCamping.BlueDuck
             set { _sessionControl.SetReservationSpotNumber(value); }
         }
 
+        private int stage = 0;
+
         // 0 = start date, 1 = end date
 
         public int CalendarSelectionState
@@ -53,19 +57,37 @@ namespace BlaAndCamping.BlueDuck
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            stage = 0;
             _sessionControl = new SessionDataControl();
             _processor = new DataProcessor();
 
+
+
             if (!IsPostBack)
             {
+                EventIDToType = new Dictionary<string, int>();
                 _sessionControl.SetSessionVariable("calendarSelectState", 0);
                 _sessionControl.ResetReservation();
             }
-                     
 
-            InitializeCheckboxes();
+            if (stage == 1)
+            {
+                if (IsPostBack && EventIDToType.ContainsKey(Request["__EVENTTARGET"]))
+                {
+                    SlotTypeclick(EventIDToType[Request["__EVENTTARGET"]]);
+                }
+            }
+
+
+
+            //InitializeCheckboxes();
             InitializeCalendar();
-            CheckValidSelection();
+            //CheckValidSelection();
+        }
+
+        protected void clickArea_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("clicked the div");
         }
 
         private void InitializeCheckboxes()
@@ -114,7 +136,7 @@ namespace BlaAndCamping.BlueDuck
 
                 customDiv.Controls.Add(img);
 
-                bookingRadioSection.Controls.Add(customDiv);
+                //bookingRadioSection.Controls.Add(customDiv);
 
             }
         }
@@ -154,13 +176,15 @@ namespace BlaAndCamping.BlueDuck
         {
             calendar_Main.DayRender += CalendarDayRenderer;
             calendar_Main.SelectionChanged += CalendarSelectionChanged;
+            calendar_Main.Width = Unit.Pixel(700);
             calendar_Main.Height = Unit.Pixel(400);
-            calendar_Main.Width = Unit.Pixel(500);
+            calendar_Main.CssClass = "calendar-main";
             calendar_Main.SelectionMode = CalendarSelectionMode.Day;
             calendar_Main.TitleStyle.BackColor = Color.FromArgb(255, 4, 94, 188);
             calendar_Main.TitleStyle.ForeColor = Color.White;
             //calendar_Main.NextMonthText
-            calendar_Main.Style.Add(HtmlTextWriterStyle.MarginLeft, "250px");
+            //calendar_Main.Style.Add(HtmlTextWriterStyle.MarginLeft, "250px");
+            calendar_Main.Style.Add(HtmlTextWriterStyle.Margin, "auto");
             calendar_Main.TitleStyle.Font.Bold = true;
             calendar_Main.TitleStyle.Font.Size = 14;
             calendar_Main.TitleStyle.Font.Name = "Arial";
@@ -188,12 +212,145 @@ namespace BlaAndCamping.BlueDuck
         {
             if(SelectedStartDate > DateTime.MinValue &&
                 SelectedEndDate > DateTime.MinValue &&
-                SelectedEndDate > SelectedStartDate &&
-                SelectedType != -1)
+                SelectedEndDate > SelectedStartDate)
             {
-                ShowAvailableSpots();
+                ShowTypeSelection();
             }
 
+        }
+
+        private void ShowTypeSelection()
+        {
+            stage = 1;
+            EventIDToType = new Dictionary<string, int>();
+            List<CampingSpotTypeInformation> spots = _processor.GetAvaibleSpotTypesInDates(SelectedStartDate, SelectedEndDate);
+
+            spots.Add(new CampingSpotTypeInformation("Telt plads", "Bruge vores telt", 6, 300, 0, "camping_tent1.jfif"));            
+            foreach (CampingSpotTypeInformation spot in spots)
+            {
+                HtmlGenericControl div_RowContainer = new HtmlGenericControl("DIV");
+
+                div_RowContainer.Attributes.Add("class", "selection-row-container");
+
+                selectionMainDiv.Controls.Add(div_RowContainer);
+
+
+
+                HtmlGenericControl div_RowBody = new HtmlGenericControl("DIV");
+
+                div_RowBody.Attributes.Add("class", "selection-row-body");
+                div_RowBody.Attributes.Add("runat", "server");
+
+                div_RowBody.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(div_RowBody, string.Empty));
+                EventIDToType.Add(div_RowBody.ClientID, spot.SpotType);
+
+               
+
+                div_RowContainer.Controls.Add(div_RowBody);
+
+                // row
+
+                HtmlGenericControl div_RowOne = new HtmlGenericControl("DIV");
+
+                div_RowOne.Attributes.Add("class", "row");
+
+                div_RowBody.Controls.Add(div_RowOne);
+
+                // col8
+
+                HtmlGenericControl div_ColEightOne = new HtmlGenericControl("DIV");
+
+                div_ColEightOne.Attributes.Add("class", "col-8");
+
+                div_RowOne.Controls.Add(div_ColEightOne);
+
+                // row
+
+                HtmlGenericControl div_RowTwo = new HtmlGenericControl("DIV");
+
+                div_RowTwo.Attributes.Add("class", "row");
+
+                div_ColEightOne.Controls.Add(div_RowTwo);
+
+                // col3
+
+                HtmlGenericControl div_ColThreeOne = new HtmlGenericControl("DIV");
+
+                div_ColThreeOne.Attributes.Add("class", "col-3");
+
+                div_RowTwo.Controls.Add(div_ColThreeOne);
+
+                // col5
+
+                HtmlGenericControl divColFiveContent = new HtmlGenericControl("DIV");
+
+                divColFiveContent.Attributes.Add("class", "col-5 content");
+
+                div_RowTwo.Controls.Add(divColFiveContent);
+
+                // h3
+
+                HtmlGenericControl h3one = new HtmlGenericControl("H3");
+
+                h3one.InnerText = spot.SpotName;
+
+                divColFiveContent.Controls.Add(h3one);
+
+                // col4
+
+                HtmlGenericControl div_ColFourOne = new HtmlGenericControl("DIV");
+
+                div_ColFourOne.Attributes.Add("class", "col-4");
+
+                div_RowTwo.Controls.Add(div_ColFourOne);
+
+                // row
+
+                HtmlGenericControl div_RowThree = new HtmlGenericControl("DIV");
+
+                div_RowThree.Attributes.Add("class", "row");
+
+                div_ColEightOne.Controls.Add(div_RowThree);
+
+                // h4
+
+                HtmlGenericControl h4One = new HtmlGenericControl("H4");
+
+                div_RowTwo.Controls.Add(h4One);
+
+                h4One.InnerText = spot.SpotDescription;
+
+                // col4
+
+                HtmlGenericControl div_ColFourTwo = new HtmlGenericControl("DIV");
+
+                div_ColFourTwo.Attributes.Add("class", "col-4");
+
+                div_RowOne.Controls.Add(div_ColFourTwo);
+
+                // img
+
+                System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+
+                img.ImageUrl = $"../Images/{spot.SpotImage}";
+
+                img.Attributes.Add("style", "height: 100%; width: 104%; margin-top: 3px;");
+
+                div_ColFourTwo.Controls.Add(img);
+
+
+
+
+
+
+            }
+
+
+        }
+
+        private void SlotTypeclick(int type)
+        {
+            Debug.WriteLine(type);
         }
 
         private void ShowAvailableSpots()
@@ -212,7 +369,7 @@ namespace BlaAndCamping.BlueDuck
                 Button btn = new Button();
                 btn.Text = number.ToString();
                 btn.CssClass = "booking-spot-button";
-                ButtonsMidSection.Controls.Add(btn);
+                //ButtonsMidSection.Controls.Add(btn);
 
                 btn.Click += (sender, args) =>
                 {

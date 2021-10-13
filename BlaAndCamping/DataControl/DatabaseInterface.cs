@@ -96,8 +96,6 @@ namespace BlaAndCamping.DataControl
                         return null;
                     }
 
-
-
                     while (rdr.Read())
                     {
                         CampingSpotTypeInformation spot = new CampingSpotTypeInformation();
@@ -168,7 +166,6 @@ namespace BlaAndCamping.DataControl
         /// <returns></returns>
         public List<CampingSpotTypeInformation> GetAvaibleSpotTypesInDates(DateTime startDate, DateTime endDate)
         {
-            List<SQLCommandParameter> cmdParams = new List<SQLCommandParameter>();
 
 
             List<CampingSpotTypeInformation> returnList = new List<CampingSpotTypeInformation>();
@@ -197,9 +194,10 @@ namespace BlaAndCamping.DataControl
                         int spot_type = (int)rdr["spot_type"];
                         int spot_squareMeters = (int)rdr["square_meters"];
                         int spot_maxPeople = (int)rdr["max_people"];
+                        string spot_image = rdr["spot_img"].ToString();
 
 
-                        CampingSpotTypeInformation model = new CampingSpotTypeInformation(spot_name, spot_description, spot_type, spot_squareMeters, spot_maxPeople);
+                        CampingSpotTypeInformation model = new CampingSpotTypeInformation(spot_name, spot_description, spot_type, spot_squareMeters, spot_maxPeople, spot_image);
                         returnList.Add(model);
 
                     }

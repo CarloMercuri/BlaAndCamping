@@ -291,7 +291,6 @@
     <Compile Include="DataControl\Constants.cs" />
     <Compile Include="DataControl\DatabaseInterface.cs" />
     <Compile Include="DataControl\SessionDataControl.cs" />
-    <Compile Include="DataControl\SQLCommandParameter.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

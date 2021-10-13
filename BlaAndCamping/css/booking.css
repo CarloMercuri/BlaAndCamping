@@ -6,8 +6,8 @@
 }
 
 .booking-mid-section-half {
-    float:left;
-    width: 50%; 
+    float: left;
+    width: 50%;
     padding-left: 40px;
 }
 
@@ -53,22 +53,21 @@
 
 .asp-checkbox {
     height: 100%;
-
 }
 
-.asp-checkbox input {
-    position: absolute;
-    height: 80%;
-    width: 40px;
-    top: 3px;
-    left: 3px;
-}
+    .asp-checkbox input {
+        position: absolute;
+        height: 80%;
+        width: 40px;
+        top: 3px;
+        left: 3px;
+    }
 
-.asp-checkbox label {
-    padding-left: 10px;
-    text-align: center;
-    padding-top: 11px;
-}
+    .asp-checkbox label {
+        padding-left: 10px;
+        text-align: center;
+        padding-top: 11px;
+    }
 
 .booking-row-container {
     display: block;
@@ -95,7 +94,11 @@
     width: 0;
 }*/
 
-.booking-radio-checkbox{
+.main-calendar {
+    margin: auto;
+}
+
+.booking-radio-checkbox {
     height: 80%;
     width: 40px;
 }
@@ -138,4 +141,74 @@
 
 .order-summary-table {
     border: 2px solid red;
+}
+
+.spot-type-selection-row {
+    width: 800px;
+    height: 200px;
+    margin-left: 65px;
+    border: 3px solid gray;
+    background-color: aliceblue;
+}
+
+.selection-image-div {
+    width: 30%;
+    float: right;
+    height: 100%;
+    transform: translateY(-163px);
+}
+
+.type-selection-button {
+    height: 210px;
+    width: 80px;
+    margin-top: 30px;
+}
+
+.calendar-main th {
+   transform: translate(37px);
+}
+
+.selection-row-container {
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+}
+
+.selection-row-button {
+    height: 100%;
+    width: 50px;
+    display: inline-flex;
+
+}
+
+.selection-button-container {
+    height: 100%;
+    width: 50px;
+    display: inline-block;
+}
+
+.selection-row-body {
+    height: 100%;
+    border: 3px solid gray;
+    width: 40%;
+    display: inline-block;
+    margin-left: 30%;
+    background-color: aliceblue;
+    transition-duration: 0.4s;
+
+}
+
+.selection-row-body:hover  {
+    background-color: blue;
+    cursor: pointer;
+}
+
+.selection-row-description {
+    width: 400px;
+    display: inline-block;
+}
+
+.selection-row-button {
+   height: 50px;
+   width: 50px;
 }

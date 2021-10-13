@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Booking.aspx.cs" maintainScrollPositionOnPostback="true" Inherits="BlaAndCamping.BlueDuck.Booking" MasterPageFile="..\Booking.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Booking.aspx.cs" maintainScrollPositionOnPostback="true" Inherits="BlaAndCamping.BlueDuck.Booking" MasterPageFile="../Booking.Master" %>
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -18,30 +18,33 @@
     <br />
 
     <!--BOOKING CONTENT-->
-    <div class="booking-mid-section">
-        <div class="booking-mid-section-half">
-            <asp:Calendar ID="calendar_Main" runat="server"></asp:Calendar>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 content">
+            <h3>Vælg en dato:</h3>
         </div>
-
-        <div class="booking-mid-section-half" ID="bookingRadioSection" runat="server">
-    </div>
+        <div class="col-2"></div>
         
     </div>
+    <div class="row">
+             <asp:ScriptManager ID="calendarScriptManager" runat="server" />
+            <asp:UpdatePanel ID="UpdatePanel1"
+                             runat="server">
+                <ContentTemplate>
+                    <asp:Calendar ID="calendar_Main" 
+                                  ShowTitle="True"
+                                  runat="server" CssClass="main-calendar" />
+                        <div runat="server" ID="selectionMainDiv">
+       
+                    </div>
+                       </ContentTemplate>
 
-
-    <!-- SELECTION -->
-
-    <div class="booking-spot-selection" style="margin-top: 40px;">
-        <div class="booking-selection-mid-section-half">
-            <img class="map" src="../Images/camping_img.png" />
-        </div>
-
-        <div class="booking-selection-mid-section-half">
-            <div id="ButtonsMidSection" class="booking-button-wrapper" runat="server"></div>
-        </div>
-
+            </asp:UpdatePanel>
     </div>
 
+    <!-- TYPE SELECTION -->
+    <br />
+    <br />
 
 
 </asp:Content>

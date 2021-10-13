@@ -22,7 +22,14 @@ namespace BlaAndCamping.BlueDuck
 
             _sessionControl = new SessionDataControl();
 
-            Reservation reservation = _sessionControl.GetReservation();
+            //Reservation reservation = _sessionControl.GetReservation();
+            Reservation reservation = new Reservation();
+
+            reservation.SpotID = 2;
+            reservation.StartDate = DateTime.Now;
+            reservation.EndDate = DateTime.Now;
+            reservation.EndDate.AddDays(5);
+            
 
             h3_Summary.InnerText = $"Du har valgt plads: {reservation.SpotID}, Ankomst: {reservation.StartDate}, Afrejse: {reservation.EndDate}";
             tBox_FirstName.BorderColor = System.Drawing.Color.Gray;

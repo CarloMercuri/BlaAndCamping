@@ -47,6 +47,15 @@ namespace BlaAndCamping
             set { maxPeople = value; }
         }
 
+        private string spotImage;
+
+        public string SpotImage
+        {
+            get { return spotImage; }
+            set { spotImage = value; }
+        }
+
+
         private int lowSeasonDailyPrice;
 
         public int LowSeasonDailyPrice
@@ -66,13 +75,14 @@ namespace BlaAndCamping
 
 
 
-        public CampingSpotTypeInformation(string spotName, string spotDescription, int spotType, int squareMeters, int maxPeople)
+        public CampingSpotTypeInformation(string spotName, string spotDescription, int spotType, int squareMeters, int maxPeople, string spotImage)
         {
             this.spotType = spotType;
             this.spotDescription = spotDescription;
             this.spotName = spotName;
             this.squareMeters = squareMeters;
             this.maxPeople = maxPeople;
+            this.spotImage = spotImage;
         }
 
         public CampingSpotTypeInformation()
