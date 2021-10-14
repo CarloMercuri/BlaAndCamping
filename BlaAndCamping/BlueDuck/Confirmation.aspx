@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="..\Site.Master" CodeBehind="Confirmation.aspx.cs" Inherits="BlaAndCamping.BlueDuck.Confirmation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../Booking.Master" CodeBehind="Confirmation.aspx.cs" Inherits="BlaAndCamping.BlueDuck.Confirmation" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -185,23 +185,79 @@
                     </tr>
                     <tr>
                         <th>
-                            <asp:Label ID="LabelExtras" runat="server" Text="Label">Tillæg</asp:Label>
+                            <asp:Label ID="LabelWaterparkAdult" runat="server" Text="Label">Adgang til vandland, voksen</asp:Label>
                         </th>
                         <td>
-                            <asp:Label ID="LabelExtrasConfirmation" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="LabelWaterparkAdultConfirmation" runat="server" Text="Label"></asp:Label>
                         </td>
                         <td>
-                            <asp:Label ID="LabelExtrasPrice" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="LabelWaterparkAdultPrice" runat="server" Text="Label"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <asp:Label ID="LabelWaterparkChildren" runat="server" Text="Label">Adgang til vandland, barn</asp:Label>
+                        </th>
+                        <td>
+                            <asp:Label ID="LabelWaterparkChildrenConfirmation" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="LabelWaterparkChildrenPrice" runat="server" Text="Label"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <asp:Label ID="LabelBicycleRent" runat="server" Text="Label">Cykelleje</asp:Label>
+                        </th>
+                        <td>
+                            <asp:Label ID="LabelBicycleRentConfirmation" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="LabelBicycleRentPrice" runat="server" Text="Label"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <asp:Label ID="LabelBedding" runat="server" Text="Label">Sengelinned (ved bestilling af hytte)</asp:Label>
+                        </th>
+                        <td>
+                            <asp:Label ID="LabelBeddingConfirmation" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="LabelBeddingPrice" runat="server" Text="Label"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <asp:Label ID="LabelEndCleaning" runat="server" Text="Label">Slutrengøring (ved bestilling af hytte)</asp:Label>
+                        </th>
+                        <td>
+                            <asp:Label ID="LabelEndCleaningConfirmation" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="LabelEndCleaningPrice" runat="server" Text="Label"></asp:Label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <asp:Label ID="LabelEmpty" runat="server" Text=""></asp:Label>
+                        </th>
+                        <td>
+                            <asp:Label ID="LabelIAlt" runat="server" Text="Label">I alt:</asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="LabelTotalPrice" runat="server" Text=""></asp:Label>
                         </td>
                     </tr>
 
                 </table>
                 <br />
                 <div>
-                    <asp:Button ID="ButtonGoToBooking" runat="server" Text="Gå tilbage til Bestilling" />
+                    <asp:Button ID="ButtonGoToBooking" runat="server" style="width: 250px;" Text="Gå tilbage til Bestilling" />
                     
-           
-                <asp:Button ID="ButtonBookNow" runat="server" Text="Book nu" />
+                <%--<asp:Button Text="Book nu" ID="btn_Submit" runat="server" CausesValidation="False" OnClick="btn_BookClick" />--%>
+                <asp:Button Text="Book nu" ID="btn_Submit" runat="server" CausesValidation="False"/>
                 </div>
                 
                    

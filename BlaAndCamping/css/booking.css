@@ -195,7 +195,7 @@
 }
 
 .selection-row-body:hover  {
-    background-color: blue;
+    background-color: #9999dd;
     cursor: pointer;
 }
 
@@ -264,4 +264,8 @@
     width: 100px;
     height: 40px;
    
+}
+
+.admin-main-div {
+    width: 90%;
 }

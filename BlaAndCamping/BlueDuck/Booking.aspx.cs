@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Diagnostics;
+using BlaAndCamping.Models;
+using BlaAndCamping.DataControl;
 
 namespace BlaAndCamping.BlueDuck
 {
@@ -346,8 +348,7 @@ namespace BlaAndCamping.BlueDuck
                 btn.ID = "btn_type0";
                 div_ColFourTwo.Controls.Add(btn);
                 
-               // btn.Click += new EventHandler(this.GreetingBtn_Click);
-
+  
                 btn.Click += (sender, args) =>
                 {
                     Debug.WriteLine("original");
@@ -436,7 +437,7 @@ namespace BlaAndCamping.BlueDuck
 
             if (SelectedEndDate > SelectedStartDate)
             {
-                if (e.Day.Date >= SelectedStartDate && e.Day.Date <= SelectedEndDate)
+                if (e.Day.Date >= SelectedStartDate.Date && e.Day.Date <= SelectedEndDate.Date)
                 {
                     e.Cell.BorderStyle = BorderStyle.Ridge;
                     e.Cell.BorderWidth = 2;

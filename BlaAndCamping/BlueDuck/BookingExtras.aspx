@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-6"></div>
             </div>
-            <div class="row">
+            <div class="row" runat="server" id="row_Bedsheet">
                 <div class="col-3">
                     <h5>Sengelinned:</h5>
                 </div>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="col-6"></div>
             </div>
-            <div class="row">
+            <div class="row" runat="server" id="row_EndCleaning">
                 <div class="col-3">
                     <h5>Slutrengøring:</h5>
                 </div>

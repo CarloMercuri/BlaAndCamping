@@ -60,18 +60,29 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetCampingSpotTypeInformation(spotType);
         }
 
+        public int InsertReservation(Reservation reservation)
+        {
+            return _dbInterface.InsertReservation(reservation);
+        }
+
+        public List<Reservation> GetReservations()
+        {
+            return _dbInterface.GetReservations();
+        }
+
         public Reservation AssembleReservation()
         {
             Reservation r = new Reservation();
             r.Adults = _sessionControl.GetReservationMembers((int)ReservationExtraID.Adult); // adults
             r.Children = _sessionControl.GetReservationMembers((int)ReservationExtraID.Child);
             r.Dogs = _sessionControl.GetReservationMembers((int)ReservationExtraID.Dog);
-
-            r.CustomerID = _sessionControl.GetReservationCustomerID();
+            r.Customer = _sessionControl.GetCustomerInformation();
+            r.CreatedDate = DateTime.Now;
+            r.CustomerID = GetCustomer(r.Customer.Email);
             r.StartDate = _sessionControl.GetReservationStartDate();
             r.EndDate = _sessionControl.GetReservationEndDate();
             r.SpotID = _sessionControl.GetReservationSpotNumber();
-            r.Customer = _sessionControl.GetCustomerInformation();
+
 
             r.Extras = new List<ReservationExtra>();
 
@@ -81,6 +92,7 @@ namespace BlaAndCamping.LogicControl
             for (int i = 0; i < GetReservationExtra(0); i++)
             {
                 ReservationExtra extra = new ReservationExtra(0, r.CalculateAmountDays());
+                r.Extras.Add(extra);
             }
 
 
@@ -88,6 +100,7 @@ namespace BlaAndCamping.LogicControl
             for (int i = 0; i < GetReservationExtra(1); i++)
             {
                 ReservationExtra extra = new ReservationExtra(1, r.CalculateAmountDays());
+                r.Extras.Add(extra);
             }
 
 
@@ -95,6 +108,7 @@ namespace BlaAndCamping.LogicControl
             if (GetReservationExtra(2) == 1)
             {
                 ReservationExtra extra = new ReservationExtra(2, r.CalculateAmountDays());
+                r.Extras.Add(extra);
             }
 
 
@@ -102,6 +116,7 @@ namespace BlaAndCamping.LogicControl
             for (int i = 0; i < GetReservationExtra(3); i++)
             {
                 ReservationExtra extra = new ReservationExtra(3, r.CalculateAmountDays());
+                r.Extras.Add(extra);
             }
 
 
@@ -109,10 +124,33 @@ namespace BlaAndCamping.LogicControl
             for (int i = 0; i < GetReservationExtra(4); i++)
             {
                 ReservationExtra extra = new ReservationExtra(4, r.CalculateAmountDays());
+                r.Extras.Add(extra);
             }
 
 
             return r;
+        }
+
+        public void FinalizeBooking(Reservation reservation)
+        {
+            int reservationID = _dbInterface.InsertReservation(reservation);
+
+            // extras
+
+            foreach(ReservationExtra extra in reservation.Extras)
+            {
+                _dbInterface.InsertReservationExtra(extra, reservationID);
+            }
+        }
+
+        public Reservation GetReservationFromDatabase()
+        {
+            return _dbInterface.GetReservation();
+        }
+
+        public int GetCustomer(string email)
+        {
+            return _dbInterface.Getcustomer(email);
         }
 
         public void SetReservationExtra(int id, int amount)

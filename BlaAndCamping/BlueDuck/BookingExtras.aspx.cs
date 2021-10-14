@@ -82,6 +82,17 @@ namespace BlaAndCamping.BlueDuck
             _session = new SessionDataControl();
             _processor = new DataProcessor();
 
+            if(_processor.GetReservationSelectedType() == 4 || _processor.GetReservationSelectedType() == 5) 
+            {
+                row_Bedsheet.Visible = true;
+                row_EndCleaning.Visible = true;
+            }
+            else
+            {
+                row_Bedsheet.Visible = false;
+                row_EndCleaning.Visible = false;
+            }
+
             btn_Submit.Click += (but, args) =>
             {
                 Response.Redirect("Confirmation.aspx");

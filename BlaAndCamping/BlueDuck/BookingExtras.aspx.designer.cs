@@ -150,6 +150,15 @@ namespace BlaAndCamping.BlueDuck
         protected global::System.Web.UI.WebControls.Button btn_WaterChildMinus;
 
         /// <summary>
+        /// row_Bedsheet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl row_Bedsheet;
+
+        /// <summary>
         /// tBox_Bedsheets control.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,15 @@ namespace BlaAndCamping.BlueDuck
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_BikesMinus;
+
+        /// <summary>
+        /// row_EndCleaning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl row_EndCleaning;
 
         /// <summary>
         /// check_EndCleaning control.

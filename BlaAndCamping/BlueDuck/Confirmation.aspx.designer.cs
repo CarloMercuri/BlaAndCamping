@@ -330,31 +330,166 @@ namespace BlaAndCamping.BlueDuck
         protected global::System.Web.UI.WebControls.Label LabelDogsPrice;
 
         /// <summary>
-        /// LabelExtras control.
+        /// LabelWaterparkAdult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelExtras;
+        protected global::System.Web.UI.WebControls.Label LabelWaterparkAdult;
 
         /// <summary>
-        /// LabelExtrasConfirmation control.
+        /// LabelWaterparkAdultConfirmation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelExtrasConfirmation;
+        protected global::System.Web.UI.WebControls.Label LabelWaterparkAdultConfirmation;
 
         /// <summary>
-        /// LabelExtrasPrice control.
+        /// LabelWaterparkAdultPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelExtrasPrice;
+        protected global::System.Web.UI.WebControls.Label LabelWaterparkAdultPrice;
+
+        /// <summary>
+        /// LabelWaterparkChildren control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelWaterparkChildren;
+
+        /// <summary>
+        /// LabelWaterparkChildrenConfirmation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelWaterparkChildrenConfirmation;
+
+        /// <summary>
+        /// LabelWaterparkChildrenPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelWaterparkChildrenPrice;
+
+        /// <summary>
+        /// LabelBicycleRent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBicycleRent;
+
+        /// <summary>
+        /// LabelBicycleRentConfirmation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBicycleRentConfirmation;
+
+        /// <summary>
+        /// LabelBicycleRentPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBicycleRentPrice;
+
+        /// <summary>
+        /// LabelBedding control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBedding;
+
+        /// <summary>
+        /// LabelBeddingConfirmation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBeddingConfirmation;
+
+        /// <summary>
+        /// LabelBeddingPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBeddingPrice;
+
+        /// <summary>
+        /// LabelEndCleaning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEndCleaning;
+
+        /// <summary>
+        /// LabelEndCleaningConfirmation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEndCleaningConfirmation;
+
+        /// <summary>
+        /// LabelEndCleaningPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEndCleaningPrice;
+
+        /// <summary>
+        /// LabelEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEmpty;
+
+        /// <summary>
+        /// LabelIAlt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelIAlt;
+
+        /// <summary>
+        /// LabelTotalPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTotalPrice;
 
         /// <summary>
         /// ButtonGoToBooking control.
@@ -366,12 +501,12 @@ namespace BlaAndCamping.BlueDuck
         protected global::System.Web.UI.WebControls.Button ButtonGoToBooking;
 
         /// <summary>
-        /// ButtonBookNow control.
+        /// btn_Submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonBookNow;
+        protected global::System.Web.UI.WebControls.Button btn_Submit;
     }
 }

@@ -40,6 +40,17 @@ namespace BlaAndCamping.Models
             set { endDate = value; }
         }
 
+        private DateTime createdDate;
+
+        /// <summary>
+        /// The end date with departure time
+        /// </summary>
+        public DateTime CreatedDate
+        {
+            get { return createdDate; }
+            set { createdDate = value; }
+        }
+
         private int customerID;
 
         /// <summary>
@@ -127,6 +138,26 @@ namespace BlaAndCamping.Models
         public Reservation()
         {
 
+        }
+
+        /// <summary>
+        /// 0 = bicycle, 1 = bedsheets, 2 = end cleaning, 3 = waterpark adult, 4 = waterpark children 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int CountExtraOfType(int id)
+        {
+            int count = 0;
+
+            for (int i = 0; i < extras.Count; i++)
+            {
+                if(extras[i].ID == id)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
 
         public int CalculateAmountDays()

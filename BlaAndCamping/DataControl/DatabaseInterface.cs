@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlaAndCamping.Models;
+using BlaAndCamping.Security;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -32,6 +34,134 @@ namespace BlaAndCamping.DataControl
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// Returns a customer ID if existing, otherwise returns -1
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public int Getcustomer(string email)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetCustomer", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return -1;
+                    }
+
+                    rdr.Read();
+                    return (int)rdr["customer_id"];
+
+                } // end of reader
+
+            } // end of cmd
+        }
+
+        public void InsertReservationExtra(ReservationExtra extra, int reservationID)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("InsertReservationExtra", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reservationID", SqlDbType.Int).Value = reservationID;
+                cmd.Parameters.Add("@days", SqlDbType.Int).Value = extra.Days;
+                cmd.Parameters.Add("@type", SqlDbType.Int).Value = extra.ID;
+                con.Open();
+
+                cmd.ExecuteNonQuery();
+
+            } // end of cmd
+        }
+
+
+
+        public Reservation GetReservation()
+        {
+            return null;
+        }
+
+        public int AuthenticateUserPass(string username, string password)
+        {
+            return 1;
+        }
+
+        public int InsertReservation(Reservation reservation)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("InsertReservation", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@spotNumber", SqlDbType.Int).Value = reservation.SpotID;
+                cmd.Parameters.Add("@startDate", SqlDbType.DateTime).Value = reservation.StartDate;
+                cmd.Parameters.Add("@endDate", SqlDbType.DateTime).Value = reservation.EndDate;
+                cmd.Parameters.Add("@customerID", SqlDbType.Int).Value = reservation.CustomerID;
+                cmd.Parameters.Add("@createdDate", SqlDbType.DateTime).Value = reservation.CreatedDate;
+                cmd.Parameters.Add("@adults", SqlDbType.Int).Value = reservation.Adults;
+                cmd.Parameters.Add("@children", SqlDbType.Int).Value = reservation.Children;
+                cmd.Parameters.Add("@dogs", SqlDbType.Int).Value = reservation.Dogs;
+                con.Open();
+
+                var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                cmd.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
+                
+                return result;
+
+            } // end of cmd
+        }
+
+        public List<Reservation> GetReservations()
+        {
+            List<Reservation> returnList = new List<Reservation>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetAllReservations", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return returnList;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        Reservation r = new Reservation();
+                        r.ReservationID = (int)rdr["reservation_id"];
+                        r.SpotID = (int)rdr["spot_number"];
+                        r.StartDate = (DateTime)rdr["start_dato"];
+                        r.EndDate = (DateTime)rdr["end_dato"];
+                        r.Adults = (int)rdr["adults"];
+                        r.Children = (int)rdr["children"];
+                        r.Dogs = (int)rdr["dogs"];
+
+                        r.Customer = new CustomerInformation();
+                        r.Customer.FirstName = rdr["c_fist_name"].ToString();
+                        r.Customer.LastName = rdr["c_last_name"].ToString();
+                        r.Customer.Email = rdr["c_email"].ToString();
+
+                        returnList.Add(r);
+                    }
+
+                } // end of reader
+
+            } // end of cmd
+
+
+            return returnList;
         }
 
         /// <summary>

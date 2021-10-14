@@ -108,6 +108,8 @@
     <Content Include="About.aspx" />
     <Content Include="BlueDuck\About.aspx" />
     <Content Include="BlueDuck\Activities.aspx" />
+    <Content Include="BlueDuck\Admin.aspx" />
+    <Content Include="BlueDuck\AdminPage.aspx" />
     <Content Include="BlueDuck\Booking.aspx" />
     <Content Include="BlueDuck\BookingExtras.aspx" />
     <Content Include="BlueDuck\BookingSelectSlot.aspx" />
@@ -129,6 +131,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\booking.css" />
+    <Content Include="css\login.css" />
     <Content Include="css\main.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -227,6 +230,20 @@
     </Compile>
     <Compile Include="BlueDuck\Activities.aspx.designer.cs">
       <DependentUpon>Activities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlueDuck\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlueDuck\AdminPage.aspx.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\AdminPage.aspx.designer.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="BlueDuck\Booking.aspx.cs">
       <DependentUpon>Booking.aspx</DependentUpon>
@@ -353,6 +370,7 @@
     <Compile Include="Models\ReservationExtra.cs" />
     <Compile Include="Models\ReservationPrices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\BAEncryption.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -9,11 +9,23 @@ namespace BlaAndCamping
     {
         private int id;
 
+        /// <summary>
+        /// 0 = bicycle, 1 = bedsheets, 2 = end cleaning, 3 = waterpark adult, 4 = waterpark children
+        /// </summary>
         public int ID
         {
             get { return id; }
             set { id = value; }
         }
+
+        private int reservationID;
+
+        public int ReservationID
+        {
+            get { return reservationID; }
+            set { reservationID = value; }
+        }
+
 
         private int days;
 

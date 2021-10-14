@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="..\Site.Master" CodeBehind="Confirmation.aspx.cs" Inherits="BlaAndCamping.BlueDuck.Confirmation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OrderConfirmed.aspx.cs" MasterPageFile="../Booking.Master" Inherits="BlaAndCamping.BlueDuck.OrderConfirmed" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
