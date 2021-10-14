@@ -58,21 +58,25 @@ namespace BlaAndCamping.BlueDuck
             stage = 0;
             _processor = new DataProcessor();
 
-
+            tBox_Selection.TextChanged += (snd, args) =>
+            {
+                _processor.SetReservationSelectedType(Int32.Parse(tBox_Selection.Text));
+                Response.Redirect("BookingSelectSlot.aspx");
+            };
+ 
 
             if (!IsPostBack)
             {
-                EventIDToType = new Dictionary<string, int>();
                 _processor.SetSessionVariable("calendarSelectState", 0);
                 _processor.InitializeReservation();
             }
 
             if (stage == 1)
             {
-                if (IsPostBack && EventIDToType.ContainsKey(Request["__EVENTTARGET"]))
-                {
-                    SlotTypeclick(EventIDToType[Request["__EVENTTARGET"]]);
-                }
+                //if (IsPostBack && EventIDToType.ContainsKey(Request["__EVENTTARGET"]))
+                //{
+                //    SlotTypeclick(EventIDToType[Request["__EVENTTARGET"]]);
+                //}
             }
 
 
@@ -222,7 +226,8 @@ namespace BlaAndCamping.BlueDuck
             EventIDToType = new Dictionary<string, int>();
             List<CampingSpotTypeInformation> spots = _processor.GetAvaibleSpotTypesInDates(SelectedStartDate, SelectedEndDate);
 
-            spots.Add(new CampingSpotTypeInformation("Telt plads", "Bruge vores telt", 6, 300, 0, "camping_tent1.jfif"));            
+            spots.Add(new CampingSpotTypeInformation("Telt plads", "Bruge vores telt", 6, 300, 0, "camping_tent1.jfif"));  
+            
             foreach (CampingSpotTypeInformation spot in spots)
             {
                 HtmlGenericControl div_RowContainer = new HtmlGenericControl("DIV");
@@ -238,10 +243,10 @@ namespace BlaAndCamping.BlueDuck
                 div_RowBody.Attributes.Add("class", "selection-row-body");
                 div_RowBody.Attributes.Add("runat", "server");
 
-                div_RowBody.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(div_RowBody, string.Empty));
-                EventIDToType.Add(div_RowBody.ClientID, spot.SpotType);
+                //div_RowBody.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(div_RowBody, string.Empty));
+                //EventIDToType.Add(div_RowBody.ClientID, spot.SpotType);
 
-               
+
 
                 div_RowContainer.Controls.Add(div_RowBody);
 
@@ -321,7 +326,7 @@ namespace BlaAndCamping.BlueDuck
 
                 HtmlGenericControl div_ColFourTwo = new HtmlGenericControl("DIV");
 
-                div_ColFourTwo.Attributes.Add("class", "col-4");
+                div_ColFourTwo.Attributes.Add("class", "col-3");
 
                 div_RowOne.Controls.Add(div_ColFourTwo);
 
@@ -337,17 +342,41 @@ namespace BlaAndCamping.BlueDuck
 
 
 
+                Button btn = new Button();
+                btn.ID = "btn_type0";
+                div_ColFourTwo.Controls.Add(btn);
+                
+               // btn.Click += new EventHandler(this.GreetingBtn_Click);
 
-
+                btn.Click += (sender, args) =>
+                {
+                    Debug.WriteLine("original");
+                    SlotTypeclick(spot.SpotType);
+                };
 
             }
 
 
         }
 
+        private void GreetingBtn_Click(Object sender,
+                           EventArgs e)
+        {
+            // When the button is clicked,
+            // change the button text, and disable it.
+
+            Debug.WriteLine("hallo");
+        }
+
+        private void clicki()
+        {
+            Debug.WriteLine("Clicked!!");
+        }
+
         private void SlotTypeclick(int type)
         {
-            Debug.WriteLine(type);
+            _processor.SetReservationSelectedType(type);
+            Response.Redirect("BookingSelectSlot.aspx");
         }
 
         private void ShowAvailableSpots()
@@ -417,6 +446,11 @@ namespace BlaAndCamping.BlueDuck
                 }
             }
 
+        }
+
+        protected void btn_type0_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("haha");
         }
     }
 }

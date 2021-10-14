@@ -3,11 +3,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <!--HEADER, IMAGE & DESCRIPTION-->
 
-
-    <div class="image-header">
-            <img class="image-header" src="../Images/camping_main_page3.jpg" alt="View over Camp"/>            
-        </div>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8 content">
@@ -20,6 +17,8 @@
     </div>
     <br />
     <br />
+
+   <!--BUTTONS - REDIRECTING TO ORDER SPOT TYPES AND OTHER INFORMATION-->
     <div class="row"> 
 <div class="col-3"></div>
         <div class="col-6">
@@ -29,8 +28,8 @@
                 <asp:ImageButton ID="OrderButtonTent" runat="server" CssClass="button-style" OnClick="TypeButtonClick"/>
                 <asp:ImageButton ID="OrderButtonWagon" runat="server" CssClass="button-style" OnClick="TypeButtonClick"/>
                 <asp:ImageButton ID="ButtonActivities" runat="server" CssClass="button-style" OnClick="ActivitesButtonClick"/>
-                <asp:ImageButton ID="OrderButton" runat="server" CssClass="button-style" />
-                <asp:ImageButton ID="OrderButtonOffer" runat="server" CssClass="button-style" OnClick="OfferButtonClick"/>
+                <asp:ImageButton ID="OrderButton" runat="server" CssClass="button-style" OnClick="OrderButtonClick"/>
+                <asp:ImageButton ID="SeasonPassButton" runat="server" CssClass="button-style" OnClick="SeasonPassButtonClick"/>
            </div>
         </div>
         <div class="col-3"></div>

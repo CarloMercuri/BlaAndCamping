@@ -11,34 +11,25 @@ namespace BlaAndCamping.BlueDuck
 {
 
 
-    public partial class Spots
+    public partial class Prices
     {
 
         /// <summary>
-        /// mainBodyDiv control.
+        /// DataList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainBodyDiv;
+        protected global::System.Web.UI.WebControls.DataList DataList1;
 
         /// <summary>
-        /// headerSpotType control.
+        /// SitePrices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl headerSpotType;
-
-        /// <summary>
-        /// headerSpotDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl headerSpotDescription;
+        protected global::System.Web.UI.WebControls.SqlDataSource SitePrices;
     }
 }

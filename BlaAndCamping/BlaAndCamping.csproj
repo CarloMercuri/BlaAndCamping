@@ -111,9 +111,12 @@
     <Content Include="BlueDuck\Booking.aspx" />
     <Content Include="BlueDuck\BookingExtras.aspx" />
     <Content Include="BlueDuck\BookingSelectSlot.aspx" />
+    <Content Include="BlueDuck\Confirmation.aspx" />
     <Content Include="BlueDuck\Contact.aspx" />
     <Content Include="BlueDuck\Index.aspx" />
     <Content Include="BlueDuck\Offers.aspx" />
+    <Content Include="BlueDuck\OrderConfirmed.aspx" />
+    <Content Include="BlueDuck\Prices.aspx" />
     <Content Include="BlueDuck\ReservationAccept.aspx" />
     <Content Include="BlueDuck\BookingCustomerData.aspx" />
     <Content Include="BlueDuck\Spots.aspx" />
@@ -150,11 +153,16 @@
     <Content Include="Images\camping_main_page1.jpg" />
     <Content Include="Images\camping_main_page2.jpg" />
     <Content Include="Images\camping_main_page3.jpg" />
+    <Content Include="Images\camping_owners.PNG" />
     <Content Include="Images\camping_tent1.jfif" />
     <Content Include="Images\dato_final.png" />
     <Content Include="Images\facebook.jpg" />
+    <Content Include="Images\givskud_zoo.jpg" />
     <Content Include="Images\hytte_final.png" />
     <Content Include="Images\instagram.jpg" />
+    <Content Include="Images\lalandia.jpg" />
+    <Content Include="Images\legohouse.jfif" />
+    <Content Include="Images\legoland.jpg" />
     <Content Include="Images\luxury_cabin.jpg" />
     <Content Include="Images\oplevelser_final.png" />
     <Content Include="Images\regular_cabin.png" />
@@ -241,6 +249,13 @@
     <Compile Include="BlueDuck\BookingSelectSlot.aspx.designer.cs">
       <DependentUpon>BookingSelectSlot.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BlueDuck\Confirmation.aspx.cs">
+      <DependentUpon>Confirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\Confirmation.aspx.designer.cs">
+      <DependentUpon>Confirmation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BlueDuck\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -261,6 +276,20 @@
     </Compile>
     <Compile Include="BlueDuck\Offers.aspx.designer.cs">
       <DependentUpon>Offers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlueDuck\OrderConfirmed.aspx.cs">
+      <DependentUpon>OrderConfirmed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\OrderConfirmed.aspx.designer.cs">
+      <DependentUpon>OrderConfirmed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlueDuck\Prices.aspx.cs">
+      <DependentUpon>Prices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueDuck\Prices.aspx.designer.cs">
+      <DependentUpon>Prices.aspx</DependentUpon>
     </Compile>
     <Compile Include="BlueDuck\ReservationAccept.aspx.cs">
       <DependentUpon>ReservationAccept.aspx</DependentUpon>
@@ -321,7 +350,8 @@
     <Compile Include="Models\CampingSpotTypeInformation.cs" />
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\Reservation.cs" />
-    <Compile Include="Models\ReservationExtras.cs" />
+    <Compile Include="Models\ReservationExtra.cs" />
+    <Compile Include="Models\ReservationPrices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

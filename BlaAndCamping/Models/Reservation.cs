@@ -62,12 +62,21 @@ namespace BlaAndCamping.Models
             set { reservationID = value; }
         }
 
-        private List<ReservationExtras> extras;
+        private string spotName;
+
+        public string SpotName
+        {
+            get { return spotName; }
+            set { spotName = value; }
+        }
+
+
+        private List<ReservationExtra> extras;
 
         /// <summary>
         /// The Extras included in the reservation
         /// </summary>
-        public List<ReservationExtras> Extras
+        public List<ReservationExtra> Extras
         {
             get { return extras; }
             set { extras = value; }
@@ -106,9 +115,25 @@ namespace BlaAndCamping.Models
             set { dogs = value; }
         }
 
+        private CustomerInformation customer;
+
+        public CustomerInformation Customer
+        {
+            get { return customer; }
+            set { customer = value; }
+        }
+
+
         public Reservation()
         {
 
         }
+
+        public int CalculateAmountDays()
+        {
+            return (int)(endDate - startDate).TotalDays;
+        }
+
+
     }
 }

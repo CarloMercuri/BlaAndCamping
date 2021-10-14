@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Camp Den Blå And</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="/css/main.css" rel="stylesheet" />
     <link href="/css/booking.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="/images/blue_duck.png" />
@@ -55,6 +56,11 @@
  <div class="image-header">
             <img class="image-header" src="../Images/camping_main_page3.jpg" alt="View over Camp"/>            
         </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
 
 <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

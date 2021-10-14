@@ -5,8 +5,9 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8 content">
-            <h1>Booking - confirmation</h1>
-             <p>Ønsker du i stedet at reservere en plads for en hel sæson, så se mere <a href="/BlueDuck/SesaonPass.aspx">her</a>. Obs! Kun for campingvogn/autocamper pladser.</p>
+            <h1>Booking - kortere ophold</h1>
+            <h3>Her på siden kan du indtaste dine personlige oplysninger</h3>
+            <p>Ønsker du i stedet at reservere en plads for en hel sæson, så se mere <a href="/BlueDuck/SesaonPass.aspx">her</a>. Obs! Kun for campingvogn/autocamper pladser.</p>
         </div>
         <div class="col-2"></div>
     </div>

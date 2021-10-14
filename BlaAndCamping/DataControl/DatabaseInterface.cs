@@ -115,6 +115,38 @@ namespace BlaAndCamping.DataControl
             return returnList;
         }
 
+        public List<int> GetExtraPrices()
+        {
+            List<int> returnList = new List<int>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetExtraPrices", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return returnList;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        int price = (int)rdr["price"];
+                        returnList.Add(price);
+
+                    }
+
+
+                } // end of reader
+
+            } // end of cmd
+
+            return returnList;
+        }
+
         /// <summary>
         /// Get information about a specific spot type
         /// </summary>
@@ -146,6 +178,8 @@ namespace BlaAndCamping.DataControl
                     spot.SpotType = (int)rdr["spot_type"];
                     spot.MaxPeople = (int)rdr["max_people"];
                     spot.LowSeasonDailyPrice = (int)rdr["base_price"];
+                    spot.SpotImage = rdr["spot_img"].ToString();
+
 
                     rdr.Read();
                     spot.HighSeasonDailyPrice = (int)rdr["base_price"];
@@ -156,6 +190,42 @@ namespace BlaAndCamping.DataControl
             } // end of cmd
 
             return spot;
+        }
+
+        public int[] GetAllMemberPrices(int season)
+        {
+            int[] returnArray = new int[3];
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetAllMemberPricesInSeason", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@season", SqlDbType.Int).Value = season;
+
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+
+                    }
+                    int i = 0;
+
+                    while (rdr.Read())
+                    {
+                        int price = (int)rdr["daily_price"];
+                        returnArray[i] = price;
+                        i++;
+                        if (i > 2) i = 2;
+
+                    }
+                } // end of reader
+
+            } // end of cmd
+
+            return returnArray;
         }
 
         /// <summary>

@@ -29,6 +29,42 @@ namespace BlaAndCamping
             r.EndDate = (DateTime)HttpContext.Current.Session["reservation_EndDate"];
             r.SpotID = (int)HttpContext.Current.Session["reservation_SpotNumber"];
 
+            r.Extras = new List<ReservationExtra>();
+
+            // 0 = bycicle
+            for (int i = 0; i < GetReservationExtra(0); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(0, r.CalculateAmountDays());
+            }
+
+
+            // 1 = bedsheets
+            for (int i = 0; i < GetReservationExtra(1); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(1, r.CalculateAmountDays());
+            }
+
+
+            // 2 = end cleaning
+            if(GetReservationExtra(2) == 1)
+            {
+                ReservationExtra extra = new ReservationExtra(2, r.CalculateAmountDays());
+            }
+
+
+            // 3 = waterpark adult
+            for (int i = 0; i < GetReservationExtra(3); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(3, r.CalculateAmountDays());
+            }
+
+
+            // 4 = waterpark children
+            for (int i = 0; i < GetReservationExtra(4); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(4, r.CalculateAmountDays());
+            }
+
 
             return r;
         }
@@ -44,6 +80,11 @@ namespace BlaAndCamping
             SetReservationSpotNumber(-1);
             SetReservationSelectedType(-1);
             SetReservationCustomerID(-1);
+            SetReservationExtra(0, 0);
+            SetReservationExtra(1, 0);
+            SetReservationExtra(2, 0);
+            SetReservationExtra(3, 0);
+            SetReservationExtra(4, 0);
         }
 
         /// <summary>
@@ -57,6 +98,58 @@ namespace BlaAndCamping
             HttpContext.Current.Session["reservation_Adults"] = adults;
             HttpContext.Current.Session["reservation_Children"] = children;
             HttpContext.Current.Session["reservation_Dogs"] = dogs;
+        }
+
+        /// <summary>
+        /// 0 = bycicle, 1 = bedsheet, 2 = end cleaning, 3 = waterpark adult, 4 = waterpark children
+        /// </summary>
+        /// <param name="id"></param>
+        public void SetReservationExtra(int id, int amount)
+        {
+            HttpContext.Current.Session[$"reservation_Extra_{id}"] = amount;
+        }
+
+        public int GetReservationExtra(int id)
+        {
+            return (int)HttpContext.Current.Session[$"reservation_Extra_{id}"];
+        }
+
+        public void SetReservationMember(int id, int amount)
+        {
+            if (amount < 0) amount = 0;
+
+            switch (id)
+            {
+                case 0:
+                    HttpContext.Current.Session["reservation_Adults"] = amount;
+                    break;
+
+                case 1:
+                    HttpContext.Current.Session["reservation_Children"] = amount;
+                    break;
+
+                case 2:
+                    HttpContext.Current.Session["reservation_Dogs"] = amount;
+                    break;
+            }
+        }
+
+        public int GetReservationMembers(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return (int)HttpContext.Current.Session["reservation_Adults"];
+
+                case 1:
+                    return (int)HttpContext.Current.Session["reservation_Children"];
+
+                case 2:
+                    return (int)HttpContext.Current.Session["reservation_Dogs"];
+
+                default:
+                    return -1;
+            }
         }
 
         /// <summary>
@@ -150,9 +243,14 @@ namespace BlaAndCamping
 
         }
 
-        public void AddReservationExtra(ReservationExtras extra)
+        public void AddReservationExtra(ReservationExtra extra)
         {
          //   CurrentReservation.Extras.Add(extra);
+        }
+
+        public CustomerInformation GetCustomerInformation()
+        {
+            return (CustomerInformation)HttpContext.Current.Session["customerInformation"];
         }
 
         public void SetCustomerInformation(CustomerInformation customer)
@@ -181,10 +279,7 @@ namespace BlaAndCamping
             return HttpContext.Current.Session[name];
         }
 
-        public CustomerInformation GetCustomerInformation()
-        {
-            return (CustomerInformation)HttpContext.Current.Session["customerInformation"];
-        }
+
 
         
     }

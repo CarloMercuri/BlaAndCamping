@@ -161,7 +161,9 @@
 .type-selection-button {
     height: 210px;
     width: 80px;
-    margin-top: 30px;
+    position: absolute;
+/*    transform:translateX(500px);
+    transform:translateY(-200px);*/
 }
 
 .calendar-main th {
@@ -174,12 +176,6 @@
     margin-top: 10px;
 }
 
-.selection-row-button {
-    height: 100%;
-    width: 50px;
-    display: inline-flex;
-
-}
 
 .selection-button-container {
     height: 100%;
@@ -209,8 +205,8 @@
 }
 
 .selection-row-button {
-   height: 50px;
-   width: 50px;
+   height: 100%;
+   width: 100%;
 }
 
 .slot-selection-buttons-container {
@@ -219,7 +215,8 @@
 }
 
 .booking-members-container {
-    margin-top: 400px;
+    margin-top: 10px;
+    margin-left: 50px;
     width: 320px;
 }
 
@@ -229,7 +226,42 @@
 }
 
 .booking-members-button {
-    margin-top:6px; 
+    margin-top:6px;
     width: 30px;
     height: 30px;
+}
+
+.booking-extras-container {
+    margin-top: 10px;
+    width: 520px;
+}
+
+.booking-extras-tbox {
+    width: 20px;
+    margin-top: 6px;
+}
+
+.booking-extras-button {
+    margin-top: 6px;
+    width: 30px;
+    height: 30px;
+}
+
+.booking-extras-check input {
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+}
+
+.summary-container {
+    width: 450px;
+    height: 500px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.extra-button-submit {
+    width: 100px;
+    height: 40px;
+   
 }

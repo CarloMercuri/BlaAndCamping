@@ -21,4 +21,17 @@ namespace BlaAndCamping.DataControl
             return esxiConnectionString;
         }
     }
+
+    public enum ReservationExtraID
+    {
+        Adult = 0,
+        Child = 1,
+        Dog = 2,
+        Bicycle = 0,
+        Bedsheet = 1,
+        EndCleaning = 2,
+        WaterparkAdult = 3,
+        WaterparkChild = 4
+
+    }
 }

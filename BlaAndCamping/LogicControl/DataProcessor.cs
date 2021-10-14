@@ -21,6 +21,35 @@ namespace BlaAndCamping.LogicControl
             _dbInterface = new DatabaseInterface("esxi");
         }
 
+        public int[] GetAllMemberPrices()
+        {
+            return _dbInterface.GetAllMemberPrices(GetCorrectSeason());
+        }
+
+        public int[] GetAllMemberPricesInSeason(int season)
+        {
+            return _dbInterface.GetAllMemberPrices(season);
+        }
+
+        public int GetCorrectSeason()
+        {
+            DateTime currentDate = DateTime.Now;
+
+            string year = currentDate.Year.ToString();
+
+            DateTime startHighSeason = DateTime.Parse($"14-06-{year}");
+            DateTime endHighSeason = DateTime.Parse($"15-08-{year}");
+
+            if (currentDate >= startHighSeason && currentDate <= endHighSeason)
+           {
+              return 1;
+           }
+           else
+            {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Returns information about a specific spot type
         /// </summary>
@@ -29,6 +58,86 @@ namespace BlaAndCamping.LogicControl
         public CampingSpotTypeInformation GetSpotTypeInformation(int spotType)
         {
             return _dbInterface.GetCampingSpotTypeInformation(spotType);
+        }
+
+        public Reservation AssembleReservation()
+        {
+            Reservation r = new Reservation();
+            r.Adults = _sessionControl.GetReservationMembers((int)ReservationExtraID.Adult); // adults
+            r.Children = _sessionControl.GetReservationMembers((int)ReservationExtraID.Child);
+            r.Dogs = _sessionControl.GetReservationMembers((int)ReservationExtraID.Dog);
+
+            r.CustomerID = _sessionControl.GetReservationCustomerID();
+            r.StartDate = _sessionControl.GetReservationStartDate();
+            r.EndDate = _sessionControl.GetReservationEndDate();
+            r.SpotID = _sessionControl.GetReservationSpotNumber();
+            r.Customer = _sessionControl.GetCustomerInformation();
+
+            r.Extras = new List<ReservationExtra>();
+
+            r.SpotName = _dbInterface.GetCampingSpotTypeInformation(_sessionControl.GetReservationSelectedType()).SpotName;
+
+            // 0 = bycicle
+            for (int i = 0; i < GetReservationExtra(0); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(0, r.CalculateAmountDays());
+            }
+
+
+            // 1 = bedsheets
+            for (int i = 0; i < GetReservationExtra(1); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(1, r.CalculateAmountDays());
+            }
+
+
+            // 2 = end cleaning
+            if (GetReservationExtra(2) == 1)
+            {
+                ReservationExtra extra = new ReservationExtra(2, r.CalculateAmountDays());
+            }
+
+
+            // 3 = waterpark adult
+            for (int i = 0; i < GetReservationExtra(3); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(3, r.CalculateAmountDays());
+            }
+
+
+            // 4 = waterpark children
+            for (int i = 0; i < GetReservationExtra(4); i++)
+            {
+                ReservationExtra extra = new ReservationExtra(4, r.CalculateAmountDays());
+            }
+
+
+            return r;
+        }
+
+        public void SetReservationExtra(int id, int amount)
+        {
+            _sessionControl.SetReservationExtra(id, amount);
+        }
+
+        public int GetReservationExtra(int id)
+        {
+            return _sessionControl.GetReservationExtra(id);
+        }
+
+        public void SetReservationMember(int id, int amount)
+        {
+            _sessionControl.SetReservationMember(id, amount);
+        }
+
+        public void SetReservationMembers(int adults, int children, int dogs)
+        {
+            _sessionControl.SetReservationMembers(adults, children, dogs);
+        }
+
+        public int GetReservationMembers(int id)
+        {
+            return _sessionControl.GetReservationMembers(id);
         }
 
         /// <summary>
@@ -70,6 +179,11 @@ namespace BlaAndCamping.LogicControl
         public void SetReservationSelectedType(int i)
         {
             _sessionControl.SetReservationSelectedType(i);
+        }
+
+        public List<int> GetExtraPrices()
+        {
+            return _dbInterface.GetExtraPrices();
         }
 
         /// <summary>

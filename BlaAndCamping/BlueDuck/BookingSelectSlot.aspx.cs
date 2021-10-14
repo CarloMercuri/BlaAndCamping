@@ -18,37 +18,37 @@ namespace BlaAndCamping.BlueDuck
             _processor = new DataProcessor();
             _sessionControl = new SessionDataControl();
 
-            //List<int> aviableSpotNumbers = _processor.GetAvailableSpotsDateType(_processor.GetReservationStartDate(),
-            //                                                                    _processor.GetReservationEndDate(),
-            //                                                                    _processor.GetReservationSelectedType());
+            List<int> aviableSpotNumbers = _processor.GetAvailableSpotsDateType(_processor.GetReservationStartDate(),
+                                                                                _processor.GetReservationEndDate(),
+                                                                                _processor.GetReservationSelectedType());
 
-            List<int> aviableSpotNumbers = new List<int>();
-            aviableSpotNumbers.Add(3);
-            aviableSpotNumbers.Add(2);
-            aviableSpotNumbers.Add(10);
-            aviableSpotNumbers.Add(89);
-            aviableSpotNumbers.Add(123);
-            aviableSpotNumbers.Add(42);
-            aviableSpotNumbers.Add(2);
-            aviableSpotNumbers.Add(3);
-            aviableSpotNumbers.Add(9);
-            aviableSpotNumbers.Add(199);
-            aviableSpotNumbers.Add(124);
-            aviableSpotNumbers.Add(101);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
-            aviableSpotNumbers.Add(87);
+            //List<int> aviableSpotNumbers = new List<int>();
+            //aviableSpotNumbers.Add(3);
+            //aviableSpotNumbers.Add(2);
+            //aviableSpotNumbers.Add(10);
+            //aviableSpotNumbers.Add(89);
+            //aviableSpotNumbers.Add(123);
+            //aviableSpotNumbers.Add(42);
+            //aviableSpotNumbers.Add(2);
+            //aviableSpotNumbers.Add(3);
+            //aviableSpotNumbers.Add(9);
+            //aviableSpotNumbers.Add(199);
+            //aviableSpotNumbers.Add(124);
+            //aviableSpotNumbers.Add(101);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
+            //aviableSpotNumbers.Add(87);
 
 
             AddSpotSelectionButtons(aviableSpotNumbers);

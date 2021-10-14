@@ -42,9 +42,13 @@
             </asp:UpdatePanel>
     </div>
 
+
+
     <!-- TYPE SELECTION -->
     <br />
     <br />
+
+    <asp:TextBox runat="server" ID="tBox_Selection" />  
 
 
 </asp:Content>

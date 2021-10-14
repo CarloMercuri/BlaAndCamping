@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BlaAndCamping
 {
-    public class ReservationExtras
+    public class ReservationExtra
     {
         private int id;
 
@@ -21,6 +21,21 @@ namespace BlaAndCamping
         {
             get { return days; }
             set { days = value; }
+        }
+
+        private int dailyPrice;
+
+        public int DailyPrice
+        {
+            get { return dailyPrice; }
+            set { dailyPrice = value; }
+        }
+
+
+        public ReservationExtra(int id, int days)
+        {
+            this.id = id;
+            this.days = days;
         }
 
 

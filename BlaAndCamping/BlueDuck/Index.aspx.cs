@@ -17,7 +17,7 @@ namespace BlaAndCamping.BlueDuck
             OrderButtonWagon.ImageUrl = "~/Images/campingvogn_final.png";
             ButtonActivities.ImageUrl = "~/Images/oplevelser_final.png";
             OrderButton.ImageUrl = "~/Images/dato_final.png";
-            OrderButtonOffer.ImageUrl = "~/Images/tilbud_final.png";
+            SeasonPassButton.ImageUrl = "~/Images/tilbud_final.png";
         }
 
         protected void TypeButtonClick(object sender, EventArgs e)
@@ -44,15 +44,19 @@ namespace BlaAndCamping.BlueDuck
 
 
         }
+        protected void OrderButtonClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Booking.aspx");
+        }
 
         protected void ActivitesButtonClick(object sender, EventArgs e)
         {
             Response.Redirect("Activities.aspx");
         }
 
-        protected void OfferButtonClick(object sender, EventArgs e)
+        protected void SeasonPassButtonClick(object sender, EventArgs e)
         {
-            Response.Redirect("Offers.aspx");
+            Response.Redirect("SeasonPass.aspx");
         }
     }
 }
