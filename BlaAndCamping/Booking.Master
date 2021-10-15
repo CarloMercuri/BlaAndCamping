@@ -41,13 +41,13 @@
           <a class="nav-link" href="/BlueDuck/Booking.aspx">Bestil</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="/BlueDuck/SeasonPass.aspx">Sæsonpas</a>
-        </li>
-          <li class="nav-item">
           <a class="nav-link" href="/BlueDuck/Offers.aspx">Tilbud</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/BlueDuck/Contact.aspx">Kontakt</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/BlueDuck/Admin.aspx">Admin</a>
         </li>
       </ul>
     </div>

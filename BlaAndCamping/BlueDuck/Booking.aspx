@@ -47,8 +47,14 @@
     <!-- TYPE SELECTION -->
     <br />
     <br />
+   <%-- <div col="row">
+        <div class="col-4"></div>
+        <div class="col-4 content">
+                <asp:TextBox runat="server" ID="tBox_Selection" />  
+        </div>
+        <div class="col-4"></div>
+    </div>--%>
 
-    <asp:TextBox runat="server" ID="tBox_Selection" />  
 
 
 </asp:Content>

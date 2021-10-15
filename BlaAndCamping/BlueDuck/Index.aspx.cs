@@ -56,7 +56,7 @@ namespace BlaAndCamping.BlueDuck
 
         protected void SeasonPassButtonClick(object sender, EventArgs e)
         {
-            Response.Redirect("SeasonPass.aspx");
+            Response.Redirect("Offers.aspx");
         }
     }
 }

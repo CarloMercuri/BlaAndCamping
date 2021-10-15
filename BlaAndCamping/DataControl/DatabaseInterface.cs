@@ -65,6 +65,11 @@ namespace BlaAndCamping.DataControl
             } // end of cmd
         }
 
+        /// <summary>
+        /// Adds an extra to the database
+        /// </summary>
+        /// <param name="extra"></param>
+        /// <param name="reservationID"></param>
         public void InsertReservationExtra(ReservationExtra extra, int reservationID)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -88,11 +93,22 @@ namespace BlaAndCamping.DataControl
             return null;
         }
 
+        /// <summary>
+        /// Authenticates a user. Returns user ID if successful, -1 if unsuccessful
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public int AuthenticateUserPass(string username, string password)
         {
             return 1;
         }
 
+        /// <summary>
+        /// Inserts a reservation into the databse and returns an id
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         public int InsertReservation(Reservation reservation)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -120,6 +136,146 @@ namespace BlaAndCamping.DataControl
             } // end of cmd
         }
 
+        /// <summary>
+        /// Get all the extras connected to a reservation
+        /// </summary>
+        /// <param name="resID"></param>
+        /// <returns></returns>
+        public List<ReservationExtra> GetReservationExtras(int resID)
+        {
+            List<ReservationExtra> returnList = new List<ReservationExtra>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetReservationExtras", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@resID", SqlDbType.Int).Value = resID;
+                con.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return returnList;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        ReservationExtra extra = new ReservationExtra();
+
+                        extra.ID = (int)rdr["extra_type"];
+                        extra.Days = (int)rdr["amount_days"];
+
+                        returnList.Add(extra);
+                    }
+
+                } // end of reader
+
+            } // end of cmd
+
+            return returnList;
+        }
+
+        /// <summary>
+        /// Gets all the reservations that a customer has made in the past
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <returns></returns>
+        public int GetCustomerPastReservations(int customerID)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("CountReservationsByCustomer", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@customerID", SqlDbType.VarChar).Value = customerID;
+
+                con.Open();
+
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return 0;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        return (int)rdr["number_reservations"];
+                    }
+
+                } // end of reader
+
+            } // end of cmd
+
+            return 0;
+        }
+
+        public int GetCustomer(string email)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("GetCustomer", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+      
+                con.Open();
+
+                var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        return -1;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        return (int)rdr["customer_id"];
+                    }
+
+                } // end of reader
+
+            } // end of cmd
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Inserts a customer into the databse and returns a customer id
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public int InsertCustomer(CustomerInformation customer)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("InsertCustomer", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@c_email", SqlDbType.VarChar).Value = customer.Email;
+                cmd.Parameters.Add("@c_fist_name", SqlDbType.VarChar).Value = customer.FirstName;
+                cmd.Parameters.Add("@c_last_name", SqlDbType.VarChar).Value = customer.LastName;
+                cmd.Parameters.Add("@c_zip_code", SqlDbType.VarChar).Value = customer.ZipCode;
+                cmd.Parameters.Add("@c_city", SqlDbType.VarChar).Value = customer.City;
+                con.Open();
+
+                var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                cmd.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
+
+                return result;
+
+            } // end of cmd
+        }
+
+        /// <summary>
+        /// Grab all the reservations from the database
+        /// </summary>
+        /// <returns></returns>
         public List<Reservation> GetReservations()
         {
             List<Reservation> returnList = new List<Reservation>();
@@ -245,6 +401,10 @@ namespace BlaAndCamping.DataControl
             return returnList;
         }
 
+        /// <summary>
+        /// Returns a list of prices for all the extas
+        /// </summary>
+        /// <returns></returns>
         public List<int> GetExtraPrices()
         {
             List<int> returnList = new List<int>();
@@ -322,6 +482,11 @@ namespace BlaAndCamping.DataControl
             return spot;
         }
 
+        /// <summary>
+        /// returns an array with people prices in a specified season. 0 = adult, 1 = children, 2 = dogs
+        /// </summary>
+        /// <param name="season"></param>
+        /// <returns></returns>
         public int[] GetAllMemberPrices(int season)
         {
             int[] returnArray = new int[3];

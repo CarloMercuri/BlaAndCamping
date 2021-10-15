@@ -18,6 +18,13 @@ namespace BlaAndCamping.BlueDuck
             _processor = new DataProcessor();
             _sessionControl = new SessionDataControl();
 
+            if (!IsPostBack)
+            {
+                int spotType = Int32.Parse(Request.QueryString["Type"]);
+                _processor.SetReservationSelectedType(spotType);
+            }
+
+
             List<int> aviableSpotNumbers = _processor.GetAvailableSpotsDateType(_processor.GetReservationStartDate(),
                                                                                 _processor.GetReservationEndDate(),
                                                                                 _processor.GetReservationSelectedType());

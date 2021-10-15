@@ -25,8 +25,12 @@ namespace BlaAndCamping.BlueDuck
             btn_Submit.Click += (su, args) =>
             {
                 int account = _db.AuthenticateUserPass(input_username.Value, input_password.Value);
-                Session["AdminUser"] = account;
-                Response.Redirect("AdminPage.aspx");
+                if(account != -1)
+                {
+                    Session["AdminUser"] = account;
+                    Response.Redirect("AdminPage.aspx");
+                }
+
             };
         }
     }

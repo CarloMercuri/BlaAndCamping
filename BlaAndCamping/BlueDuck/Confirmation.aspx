@@ -41,16 +41,7 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <th>
-                            <asp:Label ID="LabelCustomerID" runat="server" Text="Label">Kundenummer</asp:Label>
-                        </th>
-                        <td >
-                            <asp:Label ID="LabelCustomerIDConfirmed" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-
-                    <tr>
+                   <tr>
                         <th>
                             <asp:Label ID="LabelName" runat="server" Text="Label">Navn</asp:Label>
                         </th>
@@ -236,6 +227,18 @@
                         </td>
                         <td>
                             <asp:Label ID="LabelEndCleaningPrice" runat="server" Text="Label"></asp:Label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        </th>
+                        <td>
+                            <asp:Label ID="label_DiscountReason" runat="server" Text="Discount"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="label_DiscountTotal" runat="server" Text=""></asp:Label>
                         </td>
                     </tr>
 

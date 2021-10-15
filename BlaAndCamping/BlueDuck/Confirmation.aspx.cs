@@ -46,7 +46,6 @@ namespace BlaAndCamping.BlueDuck
             LabelNumberOfChildrenConfirmation.Text = reservationInfo.Children.ToString();
             LabelNumberOfDdogsConfirmation.Text = reservationInfo.Dogs.ToString();
             LabelCustomerReservationIDConfirmed.Text = reservationInfo.ReservationID.ToString();
-            LabelCustomerIDConfirmed.Text = reservationInfo.CustomerID.ToString();
             LabelCustomerCityConfirmed.Text = reservationInfo.Customer.City;
             LabelCustomerEmailConfirmed.Text = reservationInfo.Customer.Email;
             LabelCustomerNameConfirmed.Text = reservationInfo.Customer.FirstName + " " + reservationInfo.Customer.LastName;
@@ -126,7 +125,16 @@ namespace BlaAndCamping.BlueDuck
                 LabelEndCleaningPrice.Text = FormatPriceTag(0);
             }
 
-            LabelTotalPrice.Text = FormatPriceTag(totalPrice);
+            int discount = 0;
+
+            if (_processor.GetCustomerPastReservations(reservationInfo.CustomerID) > 2)
+            {
+                discount = (totalPrice / 100) * 20;
+                label_DiscountReason.Text = "Discount (old client)";
+                label_DiscountTotal.Text = FormatPriceTag(discount);
+            }
+
+            LabelTotalPrice.Text = FormatPriceTag(totalPrice - discount);
 
 
         }

@@ -21,16 +21,29 @@ namespace BlaAndCamping.LogicControl
             _dbInterface = new DatabaseInterface("esxi");
         }
 
+        /// <summary>
+        /// Returns an array with the member prices for the current season. 0 = adult, 1 = children, 2 = dogs
+        /// </summary>
+        /// <returns></returns>
         public int[] GetAllMemberPrices()
         {
             return _dbInterface.GetAllMemberPrices(GetCorrectSeason());
         }
 
+        /// <summary>
+        /// Returns an array with the member prices for a specified season. 0 = low season, 1 = high 
+        /// </summary>
+        /// <param name="season"></param>
+        /// <returns></returns>
         public int[] GetAllMemberPricesInSeason(int season)
         {
             return _dbInterface.GetAllMemberPrices(season);
         }
 
+        /// <summary>
+        /// Returns the current season. 0 = low, 1 = high
+        /// </summary>
+        /// <returns></returns>
         public int GetCorrectSeason()
         {
             DateTime currentDate = DateTime.Now;
@@ -60,16 +73,45 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetCampingSpotTypeInformation(spotType);
         }
 
+        public int GetCustomerPastReservations(int customerID)
+        {
+            return _dbInterface.GetCustomerPastReservations(customerID);
+        }
+
+        /// <summary>
+        /// Sends a reservation to the database
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         public int InsertReservation(Reservation reservation)
         {
             return _dbInterface.InsertReservation(reservation);
         }
 
+        /// <summary>
+        /// Gets all the reservations from the database
+        /// </summary>
+        /// <returns></returns>
         public List<Reservation> GetReservations()
         {
+
             return _dbInterface.GetReservations();
         }
 
+        /// <summary>
+        /// Grabs all the extras connected with a reservation
+        /// </summary>
+        /// <param name="resID"></param>
+        /// <returns></returns>
+        public List<ReservationExtra> GetReservationExtras(int resID)
+        {
+            return _dbInterface.GetReservationExtras(resID);
+        }
+
+        /// <summary>
+        /// Returns a Reservation object from all the Session objects
+        /// </summary>
+        /// <returns></returns>
         public Reservation AssembleReservation()
         {
             Reservation r = new Reservation();
@@ -131,8 +173,20 @@ namespace BlaAndCamping.LogicControl
             return r;
         }
 
+        /// <summary>
+        /// Finalizes and sends the reservation to the database
+        /// </summary>
+        /// <param name="reservation"></param>
         public void FinalizeBooking(Reservation reservation)
         {
+            int customerID = _dbInterface.GetCustomer(reservation.Customer.Email);
+
+            if(customerID == -1)
+            {
+                customerID = _dbInterface.InsertCustomer(reservation.Customer);
+            }
+
+            reservation.CustomerID = customerID;
             int reservationID = _dbInterface.InsertReservation(reservation);
 
             // extras
@@ -143,36 +197,71 @@ namespace BlaAndCamping.LogicControl
             }
         }
 
+        /// <summary>
+        /// Grabs the reservation from the database
+        /// </summary>
+        /// <returns></returns>
         public Reservation GetReservationFromDatabase()
         {
             return _dbInterface.GetReservation();
         }
 
+        /// <summary>
+        /// Retreives a customer from the databse
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public int GetCustomer(string email)
         {
             return _dbInterface.Getcustomer(email);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amount"></param>
         public void SetReservationExtra(int id, int amount)
         {
             _sessionControl.SetReservationExtra(id, amount);
         }
 
+        /// <summary>
+        /// Grabs a specific extra from session
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int GetReservationExtra(int id)
         {
             return _sessionControl.GetReservationExtra(id);
         }
 
+        /// <summary>
+        /// Sets a member in session
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amount"></param>
         public void SetReservationMember(int id, int amount)
         {
             _sessionControl.SetReservationMember(id, amount);
         }
 
+        /// <summary>
+        /// sets members in session
+        /// </summary>
+        /// <param name="adults"></param>
+        /// <param name="children"></param>
+        /// <param name="dogs"></param>
         public void SetReservationMembers(int adults, int children, int dogs)
         {
             _sessionControl.SetReservationMembers(adults, children, dogs);
         }
 
+        /// <summary>
+        /// Gets members from session
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int GetReservationMembers(int id)
         {
             return _sessionControl.GetReservationMembers(id);
@@ -199,16 +288,30 @@ namespace BlaAndCamping.LogicControl
             return _dbInterface.GetAvailableSpotsDateType(startDate, endDate, type);
         }
 
+        /// <summary>
+        /// Returns a list of the spots available withiin the dates
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         public List<CampingSpotTypeInformation> GetAvaibleSpotTypesInDates(DateTime startDate, DateTime endDate)
         {
             return _dbInterface.GetAvaibleSpotTypesInDates(startDate, endDate);
         }
 
+        /// <summary>
+        /// Sets a Customer object in session
+        /// </summary>
+        /// <param name="customer"></param>
         public void SetCustomerInformation(CustomerInformation customer)
         {
             _sessionControl.SetCustomerInformation(customer);
         }
 
+        /// <summary>
+        /// Gets the selected type from session
+        /// </summary>
+        /// <returns></returns>
         public int GetReservationSelectedType()
         {
             return _sessionControl.GetReservationSelectedType();

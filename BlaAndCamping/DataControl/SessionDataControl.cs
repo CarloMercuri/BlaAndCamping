@@ -109,11 +109,21 @@ namespace BlaAndCamping
             HttpContext.Current.Session[$"reservation_Extra_{id}"] = amount;
         }
 
+        /// <summary>
+        /// Grabs an extra
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int GetReservationExtra(int id)
         {
             return (int)HttpContext.Current.Session[$"reservation_Extra_{id}"];
         }
 
+        /// <summary>
+        /// Sets a specified reservation member
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amount"></param>
         public void SetReservationMember(int id, int amount)
         {
             if (amount < 0) amount = 0;
@@ -133,7 +143,11 @@ namespace BlaAndCamping
                     break;
             }
         }
-
+        /// <summary>
+        /// Returns a specified member of the reservation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int GetReservationMembers(int id)
         {
             switch (id)

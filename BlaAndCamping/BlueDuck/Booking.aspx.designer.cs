@@ -49,14 +49,5 @@ namespace BlaAndCamping.BlueDuck
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl selectionMainDiv;
-
-        /// <summary>
-        /// tBox_Selection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tBox_Selection;
     }
 }

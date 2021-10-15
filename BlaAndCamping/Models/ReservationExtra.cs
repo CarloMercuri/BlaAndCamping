@@ -43,6 +43,10 @@ namespace BlaAndCamping
             set { dailyPrice = value; }
         }
 
+        public ReservationExtra()
+        {
+
+        }
 
         public ReservationExtra(int id, int days)
         {

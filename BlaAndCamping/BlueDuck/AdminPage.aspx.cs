@@ -30,11 +30,17 @@ namespace BlaAndCamping.BlueDuck
 
             foreach(Reservation reservation in reservations)
             {
+                List<ReservationExtra> extras = _processor.GetReservationExtras(reservation.ReservationID);
+                reservation.Extras = extras;
+
+                
+
                 Label l = new Label();
                 l.Text = $"ID: {reservation.ReservationID} - Name: {reservation.Customer.FirstName} - Surname: {reservation.Customer.LastName}" +
                     $" Email: {reservation.Customer.Email} - Spot number: {reservation.SpotID}, {reservation.SpotName} - " +
                     $"Arrival: {reservation.StartDate.ToString("dd-mm-yyyy")} - Departure: {reservation.EndDate.ToString("dd-mm-yyyy")} - " +
-                    $"Adults: {reservation.Adults} - Children: {reservation.Children} - Dogs: {reservation.Dogs}";
+                    $"Adults: {reservation.Adults} - Children: {reservation.Children} - Dogs: {reservation.Dogs} - Bicycles: {reservation.CountExtraOfType(0)}" +
+                    $" Extra bedsheet: {reservation.CountExtraOfType(1)} - WaterPark Adult: {reservation.CountExtraOfType(3)} - WaterPark children: {reservation.CountExtraOfType(4)}";
 
                 HtmlGenericControl customDiv = new HtmlGenericControl("DIV");
 

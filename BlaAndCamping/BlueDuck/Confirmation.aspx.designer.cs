@@ -51,24 +51,6 @@ namespace BlaAndCamping.BlueDuck
         protected global::System.Web.UI.WebControls.Label LabelCustomerOrderDateConfirmed;
 
         /// <summary>
-        /// LabelCustomerID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelCustomerID;
-
-        /// <summary>
-        /// LabelCustomerIDConfirmed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelCustomerIDConfirmed;
-
-        /// <summary>
         /// LabelName control.
         /// </summary>
         /// <remarks>
@@ -463,6 +445,33 @@ namespace BlaAndCamping.BlueDuck
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelEndCleaningPrice;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// label_DiscountReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label label_DiscountReason;
+
+        /// <summary>
+        /// label_DiscountTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label label_DiscountTotal;
 
         /// <summary>
         /// LabelEmpty control.

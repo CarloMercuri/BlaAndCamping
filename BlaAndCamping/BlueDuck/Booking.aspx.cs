@@ -60,11 +60,11 @@ namespace BlaAndCamping.BlueDuck
             stage = 0;
             _processor = new DataProcessor();
 
-            tBox_Selection.TextChanged += (snd, args) =>
-            {
-                _processor.SetReservationSelectedType(Int32.Parse(tBox_Selection.Text));
-                Response.Redirect("BookingSelectSlot.aspx");
-            };
+            //tBox_Selection.TextChanged += (snd, args) =>
+            //{
+            //    _processor.SetReservationSelectedType(Int32.Parse(tBox_Selection.Text));
+            //    Response.Redirect("BookingSelectSlot.aspx");
+            //};
  
 
             if (!IsPostBack)
@@ -346,14 +346,17 @@ namespace BlaAndCamping.BlueDuck
 
                 Button btn = new Button();
                 btn.ID = "btn_type0";
-                div_ColFourTwo.Controls.Add(btn);
-                
+                div_RowContainer.Controls.Add(btn);
+                btn.PostBackUrl = $"BookingSelectSlot.aspx?Type={spot.SpotType}";
+                btn.Text = "Vælg";
+                btn.Attributes.Add("class", "select-button-type");
   
-                btn.Click += (sender, args) =>
-                {
-                    Debug.WriteLine("original");
-                    SlotTypeclick(spot.SpotType);
-                };
+                //btn.Click += (sender, args) =>
+                //{
+                //    Debug.WriteLine("original");
+                //    SlotTypeclick(spot.SpotType);
+                //    Response.Redirect("BookingSelectSlot.aspx");
+                //};
 
             }
 
